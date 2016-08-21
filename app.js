@@ -1,4 +1,6 @@
 
+// Initialize library objects for use by node
+// Also specify app dependencies
 var express = require('express');
 var app = express();
 var path = require("path");
@@ -6,6 +8,7 @@ var path = require("path");
 // Setup file routing
 app.use('/src/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/js'))
 app.use('/src/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'))
+app.use('/src/css', express.static(__dirname + '/css'))
 app.use('/src/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/js'))
 app.use('/src/scripts', express.static(__dirname + '/node_modules/angular'))
 
