@@ -1,0 +1,30 @@
+{
+  "name": "valet",
+  "version": "0.0.1",
+  "description": "Play music videos from your Spotify playlists",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cephalization/Valet.git"
+  },
+  "keywords": [
+    "music",
+    "video",
+    "search"
+  ],
+  "author": "Tony Powell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cephalization/Valet/issues"
+  },
+  "homepage": "https://github.com/cephalization/Valet#readme",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.0",
+    "underscore": "^1.8.3"
+  }
+}
