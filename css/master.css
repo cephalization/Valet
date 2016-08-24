@@ -1,3 +1,20 @@
 .title {
   text-align: center;
 }
+
+.spotify {
+  padding-top: 32px;
+  align-items: center;
+}
+
+.login {
+  text-align: center;
+}
+
+a.login:link {
+  color: black;
+}
+
+a.login:hover {
+  text-decoration: none;
+}

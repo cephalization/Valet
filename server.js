@@ -13,9 +13,11 @@ server.use('/src/scripts', express.static(__dirname + '/node_modules/bootstrap/d
 server.use('/src/scripts', express.static(__dirname + '/node_modules/angular'));
 server.use('/src/scripts', express.static(__dirname + '/node_modules/angular-route'));
 server.use('/src/scripts', express.static(__dirname + '/node_modules/angular-resource'));
+server.use('/src/scripts', express.static(__dirname + '/node_modules/angular-animate'));
 server.use('/src/scripts', express.static(__dirname + '/controller'));
 server.use('/src/scripts', express.static(__dirname + '/'));
 server.use(express.static(__dirname + '/partials'))
+server.use(express.static(__dirname + '/src/img'))
 
 // Setup request functions
 server.listen(3000, function() {

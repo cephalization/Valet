@@ -1,4 +1,4 @@
-var app = angular.module('valetState', ['ngResource']);
+var app = angular.module('valetState', ['ngResource', 'ngAnimate']);
 
 // stateCtrl
 app.controller("stateCtrl", function ($scope) {
