@@ -4,8 +4,8 @@
 
 .title {
   text-align: center;
-  background-color: #7dce94 !important;
-  color: #f6f5f3;
+  background-color: #1ED760 !important;
+  color: #1ED760;
 }
 
 body {
@@ -37,16 +37,16 @@ a.login:hover {
 }
 
 .login-panel {
-  border-color: #7dce94 !important;
+  border-color: #1ED760 !important;
 }
 
 .panel {
-  border-color: #7dce94 !important;
+  border-color: #1ED760 !important;
 }
 
 .panel-default > .login-panel-heading {
   background-image: none;
-  background-color: #7dce94 !important;
+  background-color: #1ED760 !important;
   color: #3d3d3f;
 }
 
