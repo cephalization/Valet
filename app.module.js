@@ -1,7 +1,17 @@
-var app = angular.module('valetState', ['ngResource', 'ngAnimate']);
+var app = angular.module('valetState', ['ngResource', 'ngAnimate', 'ngRoute']);
 
 // stateCtrl
 app.controller("stateCtrl", function ($scope) {
 // Select valid html stuff method
-$scope.currentHtml = "login.html";
+return $scope.currentHtml;
 });
+
+app.config(function($routeProvider){
+  $routeProvider
+  .when("/", {
+    templateUrl : "login.html"
+  })
+  .when("/about", {
+    templateUrl : "about.html"
+  })
+})
