@@ -27,9 +27,13 @@
     "angular-resource": "^1.5.8",
     "angular-route": "^1.5.8",
     "bootstrap": "^3.3.7",
+    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
+    "http": "0.0.0",
     "jquery": "^3.1.0",
     "path": "^0.12.7",
+    "querystring": "^0.2.0",
+    "request": "^2.75.0",
     "underscore": "^1.8.3"
   }
 }
