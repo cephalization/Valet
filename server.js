@@ -1,6 +1,5 @@
 // Initialize library objects for use by node
 // Also specify server dependencies
-var http = require('http');
 var express = require('express');
 var server = express();
 var path = require('path');
@@ -15,6 +14,7 @@ var request = require('request');
 var client_id = '';
 var client_secret = '';
 var redirect_uri = '';
+
 // The scopes variable determines what user data you can access when they login
 var scopes = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative'
 
@@ -56,12 +56,12 @@ if (client_id == '' || client_secret == '' || redirect_uri == '') {
     console.log('Enter spotify authorization information in the server.js file then try again.');
 } else {
 
-
     // Setup request functions
     server.listen(3000, function() {
         console.log('Connection Successful!');
     })
 
+		server.use(express.static(__dirname + '/')).use(cookieParser());
 
     server.get('/', function(req, res) {
         res.sendFile(path.join(__dirname + '/index.html'));
@@ -71,6 +71,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '') {
     // Spotify Authorization code. Still needs some tuning.
     server.get('/login', function(req, res) {
         var state = generateRandomString(16);
+
         res.cookie(stateKey, state);
 
         res.redirect('https://accounts.spotify.com/authorize?' +
