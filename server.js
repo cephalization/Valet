@@ -133,11 +133,15 @@ if (client_id == '' || client_secret == '' || redirect_uri == '') {
 					});
 
 					// we can also pass the token to the browser to make requests from there
-					res.redirect('/#' +
-						querystring.stringify({
-							access_token: access_token,
-							refresh_token: refresh_token
-						}));
+					res.cookie('accessToken', access_token, {
+						httpOnly: false,
+						maxAge: 90000
+					});
+					res.cookie('refreshToken', refresh_token, {
+						httpOnly: false,
+						maxAge: 90000
+					});
+					res.redirect('/#/loggedin');
 				} else {
 					res.redirect('/#' +
 						querystring.stringify({
