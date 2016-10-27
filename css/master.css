@@ -18,7 +18,7 @@ a:hover, a:visited, a:link, a:active a:focus {
 
 body {
   background-color: #3d3d3f !important;
-	padding: 15px 15px 15px 15px;	
+	padding: 15px 15px 15px 15px;
 }
 
 a.about:link {
@@ -69,4 +69,50 @@ a.login:hover {
 
 .panel-body {
   text-align: center;
+}
+
+.playlist-btn {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.playlists-list {
+	overflow: auto;
+	max-height: 300px;
+	text-overflow: ellipsis;
+}
+
+.songs-list {
+	overflow: auto;
+	max-height: 300px;
+	text-overflow: ellipsis;
+}
+
+.song-box {
+	text-overflow: ellipsis;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 60px;
+	padding-right: 60px;
+	margin-bottom: 10px;
+	border: medium solid #1ED760;
+}
+
+.album-art {
+	height: 64px;
+	width: 64px;
+	border: 1px solid #1ED760;
+}
+
+.artist-list {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.artist-list > li {
+	float: left;
+	display: inline;
+	padding: 5px;
+	text-align: center;
 }

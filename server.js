@@ -15,6 +15,7 @@ var client_id = '';
 var client_secret = '';
 var redirect_uri = '';
 
+
 // The scopes variable determines what user data you can access when they login
 var scopes = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative';
 
@@ -64,7 +65,12 @@ if (client_id == '' || client_secret == '' || redirect_uri == '') {
 	server.use(express.static(__dirname + '/')).use(cookieParser());
 
 	server.get('/', function(req, res) {
-		res.sendFile(path.join(__dirname + '/index.html'));
+		var authenticated = req.cookies ? req.cookies['accessToken'] : null;
+		if (authenticated !== null) {
+			res.redirect('/#/loggedin');
+		} else {
+			res.sendFile(path.join(__dirname + '/index.html'));
+		}
 	});
 
 
@@ -80,7 +86,8 @@ if (client_id == '' || client_secret == '' || redirect_uri == '') {
 				client_id: client_id,
 				scope: scopes,
 				redirect_uri: redirect_uri,
-				state: state
+				state: state,
+				show_dialog: true
 			}));
 	});
 
@@ -135,12 +142,13 @@ if (client_id == '' || client_secret == '' || redirect_uri == '') {
 					// we can also pass the token to the browser to make requests from there
 					res.cookie('accessToken', access_token, {
 						httpOnly: false,
-						maxAge: 90000
+						maxAge: 10000
 					});
 					res.cookie('refreshToken', refresh_token, {
 						httpOnly: false,
-						maxAge: 90000
+						maxAge: 10000
 					});
+
 					res.redirect('/#/loggedin');
 				} else {
 					res.redirect('/#' +
@@ -176,5 +184,14 @@ if (client_id == '' || client_secret == '' || redirect_uri == '') {
 				});
 			}
 		});
+	});
+
+	server.get('/logout', function(req, res) {
+		console.log('cookies are', res.cookies);
+		for (var cookie in res.cookies) {
+			console.log('cookie is', cookie);
+			res.clearCookie[cookie];
+		}
+		res.redirect('/');
 	});
 }

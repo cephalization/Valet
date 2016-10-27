@@ -1,5 +1,37 @@
 <div class="row" ng-controller="loginCtrl">
-	<div class="jumbotron text-center">
+	<div class="jumbotron text-center col-md-8 col-md-offset-2">
 		<h2>You're all logged in {{userInfo.id}}!</h2>
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading"> Your Playlists</div>
+				<div class="panel-body text-center playlists-list">
+					<div ng-repeat="playlist in playlists">
+						<div class="btn btn-success btn-block text-center playlist-btn" ng-click="getSongs(playlist.id)">{{playlist.name}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">Your songs</div>
+				<div class="panel-body songs-list">
+					<div ng-repeat="track in tracks">
+						<div class="song-box container-fluid">
+							<div class="media">
+								<a class="media-left">
+									<img class="album-art media-object" src="{{track.track.album.images[0].url}}" alt="AlbumArt" />
+								</a>
+								<div class="media-body">
+									<h4 class=media-heading>{{track.track.name}}</h4>
+									<ul class="artist-list">
+										<li ng-repeat="artist in track.track.artists">{{artist.name}}</p>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
