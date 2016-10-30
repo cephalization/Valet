@@ -1,98 +1,63 @@
 var app = angular.module('valetState', ['ngResource', 'ngAnimate', 'ngRoute']);
 // stateCtrl
 app.controller('loginCtrl', function($scope, $window, $location, $http) {
-	function getHashParams() {
-		var hashParams = {};
-		var e, r = /([^&;=]+)=?([^&;]*)/g,
-			q = document.cookie;
-		while (e = r.exec(q)) {
-			hashParams[e[1]] = decodeURIComponent(e[2]);
-		}
-		return hashParams;
-	}
 
-	var params = getHashParams();
-	console.log(params);
-	var accessToken = params.accessToken,
-		refreshToken = params.refreshToken,
-		userID = params.userID;
-	//
-	// if (error) {
-	// 	alert('Authentication was not completed successfully');
-	// 	$window.location.href = '/';
-	// }
+	// Get user's spotify information/profile
 	var user = {};
-	if (accessToken) {
-		// Gets user information
-		$http({
-			method: 'GET',
-			url: 'https://api.spotify.com/v1/me',
-			headers: {
-				'Authorization': 'Bearer ' + accessToken
+	$http.get('http://localhost:3000/spotify/isAuthenticated').then(function(response) {
+		console.log('user info response is', response);
+		if (response.data.auth) {
+			var userProps = Object.keys(response.data.userInfo);
+			for (var i = 0; i < userProps.length; i++) {
+				var property = userProps[i];
+				var val = response.data.userInfo[property];
+				Object.defineProperty(user, property, {
+					value: val,
+					enumerable: true,
+					configurable: true
+				});
 			}
-		}).then(function(response) {
-			console.log(response);
-			if (response.error) {
-				alert('Could not authorize request for user information.');
-				$window.location.href = '/';
-			} else {
-				user = response.data;
-				$scope.userInfo = user;
-			}
-		});
+			$scope.userInfo = user;
+			console.log('scope', $scope.userInfo);
+		} else {
+			alert('Login token has expired. Please log in again.');
+			$window.location.href = '/';
+		}
+	});
 
-		//Get user's playlists
-		$http({
-			method: 'GET',
-			url: 'https://api.spotify.com/v1/me/playlists',
-			headers: {
-				'Authorization': 'Bearer ' + accessToken
-			}
-		}).then(function(response) {
-			console.log(response);
-			if (response.error) {
-				alert('Could not authorize request for user information.');
-				$window.location.href = '/';
-			} else {
-				console.log('response items are', response.data.items);
-				$scope.playlists = response.data.items;
-			}
-		});
+	//Get user's spotify playlists
+	$http.get('http://localhost:3000/spotify/getPlaylists').then(function(response) {
+		console.log(response);
+		if (response.error) {
+			alert('Could not authorize request for user playlists. Please sign in later.');
+			$window.location.href = '/';
+		} else {
+			console.log('playlist response items are', response.data.data.items);
+			$scope.playlists = response.data.data.items;
+		}
+	});
 
-	} else {
-		alert('Login token has expired. Please log in again.');
-		$window.location.href = '/';
-	}
-
-	$scope.getSongs = function(playListID) {
-		var userID = user.id;
-		getSongsReq(playListID, accessToken, userID);
-	};
-
-	var getSongsReq = function(id, accessToken, userID) {
-		console.log('getSongs triggered. playlistID:', id, 'accessToken:', accessToken, 'userID:', userID);
-		$http({
-			method: 'GET',
-			url: 'https://api.spotify.com/v1/users/' +
-				userID +
-				'/playlists/' +
-				id +
-				'/tracks',
-			headers: {
-				'Authorization': 'Bearer ' + accessToken
+	//Get songs for a playlist
+	$scope.getSongs = function(plistID) {
+		console.log('getSongs triggered. playlistID:', plistID, 'userID:', user.id);
+		$http.get('http://localhost:3000/spotify/getSongs', {
+			params: {
+				userID: user.id,
+				playlistID: plistID
 			}
 		}).then(function(response, status) {
 			console.log('getSongs response', response);
 			console.log('response error:', response.error);
-			if (response.error) {
+			if (response.data.error) {
 				alert('Spotify encountered an error receiving tracks for this playlist.');
 			} else {
-				$scope.tracks = response.data.items;
+				$scope.tracks = response.data.data.items;
 			}
 		}, function errorCallback(response) {
-			console.log("Server error", response.data.error.status, response.data.error.statusText);
+			console.log('Server error', response.data.error.status, response.data.error.statusText);
 		});
 	};
+
 });
 
 app.config(function($routeProvider) {

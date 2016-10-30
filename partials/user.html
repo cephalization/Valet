@@ -1,12 +1,13 @@
 <div class="row" ng-controller="loginCtrl">
 	<div class="jumbotron text-center col-md-8 col-md-offset-2">
-		<h2>You're all logged in {{userInfo.id}}!</h2>
+		<h2>Welcome, {{userInfo.id}}.</h2>
+		<hr/>
 		<div class="col-md-6">
 			<div class="panel panel-default">
 				<div class="panel-heading"> Your Playlists</div>
 				<div class="panel-body text-center playlists-list">
 					<div ng-repeat="playlist in playlists">
-						<div class="btn btn-success btn-block text-center playlist-btn" ng-click="getSongs(playlist.id)">{{playlist.name}}</div>
+						<div class="btn btn-success btn-block text-center playlist-btn" ng-click="getSongs(playlist.id)"><h4>{{playlist.name}}</h4></div>
 					</div>
 				</div>
 			</div>

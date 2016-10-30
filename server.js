@@ -16,6 +16,7 @@ var client_secret = '';
 var redirect_uri = '';
 
 
+
 // The scopes variable determines what user data you can access when they login
 var scopes = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative';
 
@@ -32,6 +33,7 @@ server.use('/src/scripts', express.static(__dirname + '/controller'));
 server.use('/src/scripts', express.static(__dirname + '/'));
 server.use(express.static(__dirname + '/partials'));
 server.use(express.static(__dirname + '/src/img'));
+server.use(express.static(__dirname + '/')).use(cookieParser());
 
 
 // Setup Micellaneous Server functions
@@ -61,8 +63,6 @@ if (client_id == '' || client_secret == '' || redirect_uri == '') {
 	server.listen(3000, function() {
 		console.log('Connection Successful!');
 	});
-
-	server.use(express.static(__dirname + '/')).use(cookieParser());
 
 	server.get('/', function(req, res) {
 		var authenticated = req.cookies ? req.cookies['accessToken'] : null;
@@ -139,14 +139,15 @@ if (client_id == '' || client_secret == '' || redirect_uri == '') {
 						console.log(body);
 					});
 
-					// we can also pass the token to the browser to make requests from there
+					//we can also pass the token to the browser to make requests from there
+					// Stored as an http only token that the browser does not have access to
 					res.cookie('accessToken', access_token, {
-						httpOnly: false,
-						maxAge: 10000
+						httpOnly: true,
+						maxAge: 600000
 					});
 					res.cookie('refreshToken', refresh_token, {
-						httpOnly: false,
-						maxAge: 10000
+						httpOnly: true,
+						maxAge: 600000
 					});
 
 					res.redirect('/#/loggedin');
@@ -187,11 +188,108 @@ if (client_id == '' || client_secret == '' || redirect_uri == '') {
 	});
 
 	server.get('/logout', function(req, res) {
-		console.log('cookies are', res.cookies);
-		for (var cookie in res.cookies) {
-			console.log('cookie is', cookie);
-			res.clearCookie[cookie];
-		}
+		res.clearCookie('accessToken');
+		res.clearCookie('refreshToken');
 		res.redirect('/');
+	});
+
+	/*
+	 * SPOTIFY HTTP REQUESTS
+	 */
+
+	// ***** retrieve user information ******
+	server.get('/spotify/isAuthenticated', function(req, res) {
+		var spotifyAccessToken = req.cookies['accessToken'];
+		var spotifyRefreshToken = req.cookies['refreshToken'];
+		if (spotifyAccessToken !== null && spotifyRefreshToken !== null) {
+			var options = {
+				url: 'https://api.spotify.com/v1/me',
+				headers: {
+					'Authorization': 'Bearer ' + spotifyAccessToken
+				},
+				json: true
+			};
+
+			// use the access token to access the Spotify Web API
+			request.get(options, function(error, response, body) {
+				if (!error && response.statusCode === 200) {
+					res.send({
+						auth: true,
+						userInfo: body
+					});
+				} else {
+					res.send({
+						auth: false
+					});
+				}
+			});
+		}
+	});
+
+	// ****** retrieve user playlists *****
+	server.get('/spotify/getPlaylists', function(req, res) {
+		var spotifyAccessToken = req.cookies['accessToken'];
+		var spotifyRefreshToken = req.cookies['refreshToken'];
+		if (spotifyAccessToken !== null && spotifyRefreshToken !== null) {
+			var options = {
+				url: 'https://api.spotify.com/v1/me/playlists',
+				headers: {
+					'Authorization': 'Bearer ' + spotifyAccessToken
+				},
+				qs: {
+					limit: 50
+				},
+				json: true
+			};
+
+			// use the access token to access the Spotify Web API
+			request.get(options, function(error, response, body) {
+				if (!error && response.statusCode === 200) {
+					res.send({
+						data: body,
+						error: false
+					});
+				} else {
+					res.send({
+						error: true
+					});
+				}
+			});
+		}
+	});
+
+	// ***** retieve playlist's songs
+	server.get('/spotify/getSongs', function(req, res) {
+		var spotifyAccessToken = req.cookies['accessToken'];
+		var spotifyRefreshToken = req.cookies['refreshToken'];
+		var userID = req.query.userID;
+		var playlistID = req.query.playlistID;
+		if (spotifyAccessToken !== null && spotifyRefreshToken !== null) {
+			var options = {
+				url: 'https://api.spotify.com/v1/users/' +
+					userID +
+					'/playlists/' +
+					playlistID +
+					'/tracks',
+				headers: {
+					'Authorization': 'Bearer ' + spotifyAccessToken
+				},
+				json: true
+			};
+			// use the access token to access the Spotify Web API
+			request.get(options, function(error, response, body) {
+				console.log('the body of getSongs is', body);
+				if (!error && response.statusCode === 200) {
+					res.send({
+						data: body,
+						error: false
+					});
+				} else {
+					res.send({
+						error: true
+					});
+				}
+			});
+		}
 	});
 }

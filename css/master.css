@@ -74,6 +74,7 @@ a.login:hover {
 .playlist-btn {
 	margin-top: 10px;
 	margin-bottom: 10px;
+	text-overflow: ellipsis;
 }
 
 .playlists-list {
