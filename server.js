@@ -15,8 +15,6 @@ var client_id = '';
 var client_secret = '';
 var redirect_uri = '';
 
-
-
 // The scopes variable determines what user data you can access when they login
 var scopes = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative';
 
