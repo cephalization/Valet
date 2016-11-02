@@ -1,6 +1,6 @@
 var app = angular.module('valetState', ['ngResource', 'ngAnimate', 'ngRoute']);
 // stateCtrl
-app.controller('loginCtrl', function($scope, $window, $location, $http) {
+app.controller('loginCtrl', function($scope, $window, $http) {
 
 	// Get user's spotify information/profile
 	var user = {};
@@ -45,7 +45,7 @@ app.controller('loginCtrl', function($scope, $window, $location, $http) {
 				userID: user.id,
 				playlistID: plistID
 			}
-		}).then(function(response, status) {
+		}).then(function(response) {
 			console.log('getSongs response', response);
 			console.log('response error:', response.error);
 			if (response.data.error) {
@@ -58,6 +58,28 @@ app.controller('loginCtrl', function($scope, $window, $location, $http) {
 		});
 	};
 
+});
+
+app.controller('titleCtrl', function($scope, $http, $window) {
+	$http.get('http://localhost:3000/spotify/isAuthenticated').then(function(response) {
+		$scope.auth = response.data.auth;
+	});
+
+	$scope.whichRoot = function() {
+		console.log('whichRoot has been triggered');
+		if ($scope.auth != null) {
+			if ($scope.auth) {
+				console.log('Location check is', $window.location.href );
+				if ($window.location.href == 'http://localhost:3000/#/') {
+					$window.location.href = '/#/loggedin';
+				}
+				return '/#/loggedin';
+			} else {
+				return '/#/';
+			}
+		}
+		return '/#/';
+	};
 });
 
 app.config(function($routeProvider) {

@@ -15,6 +15,7 @@ var client_id = '';
 var client_secret = '';
 var redirect_uri = '';
 
+
 // The scopes variable determines what user data you can access when they login
 var scopes = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative';
 
@@ -62,14 +63,9 @@ if (client_id == '' || client_secret == '' || redirect_uri == '') {
 		console.log('Connection Successful!');
 	});
 
-	server.get('/', function(req, res) {
-		var authenticated = req.cookies ? req.cookies['accessToken'] : null;
-		if (authenticated !== null) {
-			res.redirect('/#/loggedin');
-		} else {
-			res.sendFile(path.join(__dirname + '/index.html'));
-		}
-	});
+	// server.get('/', function(req, res) {
+	// 	res.sendFile(path.join(__dirname + '/index.html'));
+	// });
 
 
 	// Spotify Authorization code. Still needs some tuning.
@@ -256,7 +252,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '') {
 		}
 	});
 
-	// ***** retieve playlist's songs
+	// ***** retrieve playlist's songs
 	server.get('/spotify/getSongs', function(req, res) {
 		var spotifyAccessToken = req.cookies['accessToken'];
 		var spotifyRefreshToken = req.cookies['refreshToken'];
@@ -276,7 +272,6 @@ if (client_id == '' || client_secret == '' || redirect_uri == '') {
 			};
 			// use the access token to access the Spotify Web API
 			request.get(options, function(error, response, body) {
-				console.log('the body of getSongs is', body);
 				if (!error && response.statusCode === 200) {
 					res.send({
 						data: body,
