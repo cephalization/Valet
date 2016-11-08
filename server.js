@@ -11,9 +11,9 @@ var request = require('request');
  * For more information, read
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
-var client_id = '';
-var client_secret = '';
-var redirect_uri = '';
+var client_id = '22816d41c88a489594cd59e8186658cf';
+var client_secret = '10c7e867901348cc869562150469487b';
+var redirect_uri = 'http://192.168.1.3:3000/callback/';
 
 
 // The scopes variable determines what user data you can access when they login

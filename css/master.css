@@ -3,9 +3,41 @@
 */
 
 .title {
-  text-align: center;
-  background-color: #1ED760 !important;
-  color: #1ED760;
+	margin-bottom: 15px;
+  background-color: #1ED760;
+}
+
+.username {
+	padding-top: 10%;
+	margin-left: 0;
+	padding-left: 0;
+	padding-right: 0;
+	margin-right: 0;
+}
+
+.transitional-div {
+	display: inline-block;
+	overflow: hidden;
+	width: 100%
+}
+
+.content-panel {
+	max-width: 80%;
+	width: 80%;
+	margin-left: 10%;
+}
+
+@media (max-width:768px) {
+	.content-panel {
+		max-width: 100%;
+		width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+.container-fill {
+	height: 50%;
 }
 
 a.jumbo-title:link {
@@ -13,12 +45,13 @@ a.jumbo-title:link {
 }
 
 a:hover, a:visited, a:link, a:active a:focus {
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
 body {
-  background-color: #3d3d3f !important;
-	padding: 15px 15px 15px 15px;
+  background-color: #3d3d3f;
+	padding: 0;
+	margin: 0;
 }
 
 a.about:link {
@@ -29,13 +62,31 @@ a.about:hover {
   text-decoration: none;
 }
 
+.about {
+	font-size: 1em;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	padding: 0;
+	list-style-type: none;
+}
+
+.nav-padder {
+	display: inline-block;
+	padding: 5px;
+}
 
 /*
   Login Partial CSS
 */
 
 .spotify {
-  padding-top: 32px;
+  margin-top: 32px;
   align-items: center;
 }
 
@@ -54,17 +105,35 @@ a.login:hover {
 }
 
 .login-panel {
-  border-color: #1ED760 !important;
+  border-color: #1ED760;
 }
 
 .panel {
-  border-color: #1ED760 !important;
+  border-color: #1ED760;
 }
+
+.content-anim.ng-enter {
+	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) .75s;
+}
+
+/*.content-anim.ng-leave {
+	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s;
+}*/
 
 .panel-default > .login-panel-heading {
   background-image: none;
-  background-color: #1ED760 !important;
+  background-color: #1ED760;
   color: #3d3d3f;
+}
+
+.content-anim.ng-enter,
+.content-anim.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+.content-anim.ng-leave,
+.content-anim.ng-enter.ng-enter-active {
+  opacity:1;
 }
 
 .panel-body {
@@ -74,16 +143,12 @@ a.login:hover {
 .playlist-btn {
 	margin-top: 10px;
 	margin-bottom: 10px;
-	text-overflow: ellipsis;
+	white-space: normal;
+	width: inherit;
+	background-color: #1ED760;
 }
 
-.playlists-list {
-	overflow: auto;
-	max-height: 300px;
-	text-overflow: ellipsis;
-}
-
-.songs-list {
+.content-list {
 	overflow: auto;
 	max-height: 300px;
 	text-overflow: ellipsis;
@@ -93,8 +158,6 @@ a.login:hover {
 	text-overflow: ellipsis;
 	padding-top: 15px;
 	padding-bottom: 15px;
-	padding-left: 60px;
-	padding-right: 60px;
 	margin-bottom: 10px;
 	border: medium solid #1ED760;
 }
@@ -119,7 +182,6 @@ a.login:hover {
 }
 
 .profile-img {
-  width: 170px;
-  height: 170px;
-	display: block;
+	max-width: 250px;
+	max-height: 250px;
 }

@@ -3,8 +3,9 @@ var app = angular.module('valetState', ['ngResource', 'ngAnimate', 'ngRoute']);
 app.controller('loginCtrl', function($scope, $window, $http) {
 
 	// Get user's spotify information/profile
+	console.log('location host is', location.host);
 	var user = {};
-	$http.get('http://localhost:3000/spotify/isAuthenticated').then(function(response) {
+	$http.get('http://'+ location.host +'/spotify/isAuthenticated').then(function(response) {
 		console.log('user info response is', response);
 		if (response.data.auth) {
 			var userProps = Object.keys(response.data.userInfo);
@@ -26,7 +27,7 @@ app.controller('loginCtrl', function($scope, $window, $http) {
 	});
 
 	//Get user's spotify playlists
-	$http.get('http://localhost:3000/spotify/getPlaylists').then(function(response) {
+	$http.get('http://'+ location.host +'/spotify/getPlaylists').then(function(response) {
 		console.log(response);
 		if (response.error) {
 			alert('Could not authorize request for user playlists. Please sign in later.');
@@ -37,10 +38,18 @@ app.controller('loginCtrl', function($scope, $window, $http) {
 		}
 	});
 
+	$scope.userName = function() {
+		if (user.display_name == null) {
+			return user.id;
+		} else {
+			return user.display_name;
+		}
+	};
+
 	//Get songs for a playlist
 	$scope.getSongs = function(plistID) {
 		console.log('getSongs triggered. playlistID:', plistID, 'userID:', user.id);
-		$http.get('http://localhost:3000/spotify/getSongs', {
+		$http.get('http://'+ location.host +'/spotify/getSongs', {
 			params: {
 				userID: user.id,
 				playlistID: plistID
@@ -52,16 +61,28 @@ app.controller('loginCtrl', function($scope, $window, $http) {
 				alert('Spotify encountered an error receiving tracks for this playlist.');
 			} else {
 				$scope.tracks = response.data.data.items;
+				playlistSelected();
 			}
 		}, function errorCallback(response) {
 			console.log('Server error', response.data.error.status, response.data.error.statusText);
 		});
 	};
-
+	// Handle state changes within the application
+	function playlistSelected() {
+		console.log('selecting playlist...');
+		$scope.playlistSelected = true;
+	}
+	function playlistDeselected() {
+		console.log('deselecting playlist...');
+		$scope.playlistSelected = false;
+	}
+	$scope.playlistSelected = false;
+	$scope.selectPlaylist = playlistSelected;
+	$scope.deselectPlaylist = playlistDeselected;
 });
 
 app.controller('titleCtrl', function($scope, $http, $window) {
-	$http.get('http://localhost:3000/spotify/isAuthenticated').then(function(response) {
+	$http.get('http://'+ location.host +'/spotify/isAuthenticated').then(function(response) {
 		$scope.auth = response.data.auth;
 	});
 
@@ -70,7 +91,7 @@ app.controller('titleCtrl', function($scope, $http, $window) {
 		if ($scope.auth != null) {
 			if ($scope.auth) {
 				console.log('Location check is', $window.location.href );
-				if ($window.location.href == 'http://localhost:3000/#/') {
+				if ($window.location.href == 'http://'+ location.host +'/#/') {
 					$window.location.href = '/#/loggedin';
 				}
 				return '/#/loggedin';
