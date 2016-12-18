@@ -11,10 +11,15 @@ var request = require('request');
  * For more information, read
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
-var client_id = '22816d41c88a489594cd59e8186658cf';
-var client_secret = '10c7e867901348cc869562150469487b';
-var redirect_uri = 'http://192.168.1.3:3000/callback/';
+var client_id = '';
+var client_secret = '';
+var redirect_uri = '';
 
+/** Setup Youtube auth information
+ * For more information, read examples at
+ * https://developers.google.com/youtube/v3/getting-started
+ */
+var yt_api_key = '';
 
 // The scopes variable determines what user data you can access when they login
 var scopes = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative';
@@ -54,8 +59,8 @@ var generateRandomString = function(length) {
 
 var stateKey = 'spotify_auth_state';
 
-if (client_id == '' || client_secret == '' || redirect_uri == '') {
-	console.log('Enter spotify authorization information in the server.js file then try again.');
+if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key == '') {
+	console.log('Enter spotify authorization and youtube api information in the server.js file then try again.');
 } else {
 
 	// Setup request functions
@@ -252,7 +257,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '') {
 		}
 	});
 
-	// ***** retrieve playlist's songs
+	// ***** retrieve playlist's songs ******
 	server.get('/spotify/getSongs', function(req, res) {
 		var spotifyAccessToken = req.cookies['accessToken'];
 		var spotifyRefreshToken = req.cookies['refreshToken'];
@@ -284,5 +289,29 @@ if (client_id == '' || client_secret == '' || redirect_uri == '') {
 				}
 			});
 		}
+	});
+
+	/*
+	 * YouTube HTTP REQUESTS
+	 */
+
+	// ****** Perform search query for each song ******
+	server.get('/youtube/search', function(req, res){
+		var searchQuery = req.query.searchQuery;
+		var options = {
+			url: 'https://www.googleapis.com/youtube/v3/search',
+            qs: {
+                key: yt_api_key,
+				part: 'snippet',
+				order: 'viewCount',
+				q: searchQuery,
+				type: 'video',
+				videoEmbeddable: 'true'
+			}
+		};
+		request.get(options, function(error, response){
+			console.log(response.body);
+			res.send(response);
+		});
 	});
 }

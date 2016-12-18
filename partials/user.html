@@ -20,7 +20,7 @@
 			<div class="content-panel content-anim" ng-if="playlistSelected">
 				<div class="panel panel-default">
 					<div class="panel-heading text-center">
-						<span ng-click="deselectPlaylist()" class="glyphicon glyphicon-backward pull-left"></span>
+						<span ng-click="deselectPlaylist()" class="glyphicon glyphicon-backward btn btn-warning btn-sm"></span>
 						Your songs
 					</div>
 					<div class="panel-body content-list">
@@ -39,6 +39,10 @@
 								</div>
 							</div>
 						</div>
+					</div>
+					<div class="panel-footer text-center">
+						Take my keys
+						<span class="glyphicon glyphicon-search btn btn-success btn-sm" ng-click="findVideos(tracks)"></span>
 					</div>
 				</div>
 			</div>
