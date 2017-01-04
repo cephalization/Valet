@@ -175,7 +175,6 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 			},
 			json: true
 		};
-
 		request.post(authOptions, function(error, response, body) {
 			if (!error && response.statusCode === 200) {
 				var access_token = body.access_token;
@@ -185,7 +184,6 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 			}
 		});
 	});
-
 	server.get('/logout', function(req, res) {
 		res.clearCookie('accessToken');
 		res.clearCookie('refreshToken');
@@ -275,6 +273,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 				},
 				json: true
 			};
+
 			// use the access token to access the Spotify Web API
 			request.get(options, function(error, response, body) {
 				if (!error && response.statusCode === 200) {
@@ -295,7 +294,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 	 * YouTube HTTP REQUESTS
 	 */
 
-	// ****** Perform search query for each song ******
+	// ****** Perform search query for a song ******
 	server.get('/youtube/search', function(req, res){
 		var searchQuery = req.query.searchQuery;
 		var options = {
@@ -310,7 +309,6 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 			}
 		};
 		request.get(options, function(error, response){
-			console.log(response.body);
 			res.send(response);
 		});
 	});

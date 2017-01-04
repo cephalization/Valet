@@ -17,7 +17,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="content-panel content-anim" ng-if="playlistSelected">
+			<div class="content-panel content-anim" ng-if="playlistSelected && !youtubeSearched">
 				<div class="panel panel-default">
 					<div class="panel-heading text-center">
 						<span ng-click="deselectPlaylist()" class="glyphicon glyphicon-backward btn btn-warning btn-sm"></span>
@@ -46,6 +46,22 @@
 					</div>
 				</div>
 			</div>
+      <div class="content-anim" ng-if="youtubeSearched">
+        <div class="panel panel-default">
+          <div class="panel-heading text-center">
+            Music Videos
+          </div>
+          <div class="panel-body video-list">
+            <div ng-repeat="link in links">
+                <div class="video-box">
+                    <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="{{link.link}}"></iframe>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
 		</div>
 	</div>
 </div>

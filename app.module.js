@@ -1,6 +1,6 @@
 var app = angular.module('valetState', ['ngResource', 'ngAnimate', 'ngRoute']);
 // stateCtrl
-app.controller('loginCtrl', function($scope, $window, $http) {
+app.controller('loginCtrl', function($scope, $window, $http, $sce) {
 
 	// Get user's spotify information/profile
 	console.log('location host is', location.host);
@@ -97,6 +97,7 @@ app.controller('loginCtrl', function($scope, $window, $http) {
 	// Handle youtube search requests
 	function searchRequest(query) {
         return new Promise(function(resolve, reject) {
+
     		// Return an embed link of a youtube video
             $http.get('http://'+ location.host +'/youtube/search', {
     			params: {
@@ -120,13 +121,19 @@ app.controller('loginCtrl', function($scope, $window, $http) {
 			var track = tracks[i];
             var query = track.track.artists[0].name + track.track.name;
             searchRequest(query).then(function(response) {
-			      videoLinks.push(response.items[0].id.videoId);
+                videoLinks.push(
+                    {
+                        link : $sce.trustAsResourceUrl("https://www.youtube.com/embed/" + response.items[0].id.videoId)
+                    });
             }, function(error) {
                 console.log(error);
             });
 		}
-		$scope.videos = videoLinks;
-        console.log('videoLinks contains', videoLinks);
+		$scope.links = videoLinks;
+        if ($scope.links) {
+            $scope.youtubeSearched = true;
+        }
+        console.log('$scope.links contains', $scope.links);
     }
 	$scope.findVideos = findVideos;
 });

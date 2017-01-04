@@ -154,11 +154,22 @@ a.login:hover {
 	text-overflow: ellipsis;
 }
 
+.video-list {
+    overflow: auto;
+    max-height: 450px;
+}
 .song-box {
 	text-overflow: ellipsis;
 	padding-top: 15px;
 	padding-bottom: 15px;
 	margin-bottom: 10px;
+	border: medium solid #1ED760;
+}
+
+.video-box {
+    text-overflow: ellipsis;
+    padding: 5px;
+    margin-bottom: 10px;
 	border: medium solid #1ED760;
 }
 
