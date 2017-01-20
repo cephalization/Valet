@@ -1,0 +1,13 @@
+/** Setup Spotify auth information
+ * For more information, read
+ * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
+ */
+var client_id = '22816d41c88a489594cd59e8186658cf';
+var client_secret = '5a6ab54a821d40979ad083cb969e6e33';
+var redirect_uri = 'http://localhost:3000/callback/';
+
+/** Setup Youtube auth information
+ * For more information, read examples at
+ * https://developers.google.com/youtube/v3/getting-started
+ */
+var yt_api_key = 'AIzaSyA-T5wzFDDVLjPH_K8c-6a_wEMFmn0euiU';

@@ -156,7 +156,7 @@ a.login:hover {
 
 .video-list {
     overflow: auto;
-    max-height: 450px;
+    max-height: 550px;
 }
 .song-box {
 	text-overflow: ellipsis;
@@ -167,9 +167,9 @@ a.login:hover {
 }
 
 .video-box {
-    text-overflow: ellipsis;
-    padding: 5px;
-    margin-bottom: 10px;
+  text-overflow: ellipsis;
+  padding: 5px;
+  margin-bottom: 10px;
 	border: medium solid #1ED760;
 }
 

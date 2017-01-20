@@ -47,7 +47,7 @@ server.use(express.static(__dirname + '/')).use(cookieParser());
  * @param  {number} length The length of the string
  * @return {string} The generated string
  */
-var generateRandomString = function(length) {
+var generateRandomString = function (length) {
 	var text = '';
 	var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -64,7 +64,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 } else {
 
 	// Setup request functions
-	server.listen(3000, function() {
+	server.listen(3000, function () {
 		console.log('Connection Successful!');
 	});
 
@@ -74,7 +74,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 
 
 	// Spotify Authorization code. Still needs some tuning.
-	server.get('/login', function(req, res) {
+	server.get('/login', function (req, res) {
 		var state = generateRandomString(16);
 
 		res.cookie(stateKey, state);
@@ -90,7 +90,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 			}));
 	});
 
-	server.get('/callback', function(req, res) {
+	server.get('/callback', function (req, res) {
 
 		// your application requests refresh and access tokens
 		// after checking the state parameter
@@ -119,7 +119,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 				json: true
 			};
 
-			request.post(authOptions, function(error, response, body) {
+			request.post(authOptions, function (error, response, body) {
 				if (!error && response.statusCode === 200) {
 
 					var access_token = body.access_token,
@@ -134,7 +134,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 					};
 
 					// use the access token to access the Spotify Web API
-					request.get(options, function(error, response, body) {
+					request.get(options, function (error, response, body) {
 						console.log(body);
 					});
 
@@ -160,7 +160,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 		}
 	});
 
-	server.get('/refresh_token', function(req, res) {
+	server.get('/refresh_token', function (req, res) {
 
 		// requesting access token from refresh token
 		var refresh_token = req.query.refresh_token;
@@ -175,7 +175,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 			},
 			json: true
 		};
-		request.post(authOptions, function(error, response, body) {
+		request.post(authOptions, function (error, response, body) {
 			if (!error && response.statusCode === 200) {
 				var access_token = body.access_token;
 				res.send({
@@ -184,7 +184,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 			}
 		});
 	});
-	server.get('/logout', function(req, res) {
+	server.get('/logout', function (req, res) {
 		res.clearCookie('accessToken');
 		res.clearCookie('refreshToken');
 		res.redirect('/');
@@ -195,7 +195,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 	 */
 
 	// ***** retrieve user information ******
-	server.get('/spotify/isAuthenticated', function(req, res) {
+	server.get('/spotify/isAuthenticated', function (req, res) {
 		var spotifyAccessToken = req.cookies['accessToken'];
 		var spotifyRefreshToken = req.cookies['refreshToken'];
 		if (spotifyAccessToken !== null && spotifyRefreshToken !== null) {
@@ -208,7 +208,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 			};
 
 			// use the access token to access the Spotify Web API
-			request.get(options, function(error, response, body) {
+			request.get(options, function (error, response, body) {
 				if (!error && response.statusCode === 200) {
 					res.send({
 						auth: true,
@@ -224,7 +224,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 	});
 
 	// ****** retrieve user playlists *****
-	server.get('/spotify/getPlaylists', function(req, res) {
+	server.get('/spotify/getPlaylists', function (req, res) {
 		var spotifyAccessToken = req.cookies['accessToken'];
 		var spotifyRefreshToken = req.cookies['refreshToken'];
 		if (spotifyAccessToken !== null && spotifyRefreshToken !== null) {
@@ -240,7 +240,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 			};
 
 			// use the access token to access the Spotify Web API
-			request.get(options, function(error, response, body) {
+			request.get(options, function (error, response, body) {
 				if (!error && response.statusCode === 200) {
 					res.send({
 						data: body,
@@ -256,7 +256,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 	});
 
 	// ***** retrieve playlist's songs ******
-	server.get('/spotify/getSongs', function(req, res) {
+	server.get('/spotify/getSongs', function (req, res) {
 		var spotifyAccessToken = req.cookies['accessToken'];
 		var spotifyRefreshToken = req.cookies['refreshToken'];
 		var userID = req.query.userID;
@@ -264,10 +264,10 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 		if (spotifyAccessToken !== null && spotifyRefreshToken !== null) {
 			var options = {
 				url: 'https://api.spotify.com/v1/users/' +
-					userID +
-					'/playlists/' +
-					playlistID +
-					'/tracks',
+				userID +
+				'/playlists/' +
+				playlistID +
+				'/tracks',
 				headers: {
 					'Authorization': 'Bearer ' + spotifyAccessToken
 				},
@@ -275,7 +275,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 			};
 
 			// use the access token to access the Spotify Web API
-			request.get(options, function(error, response, body) {
+			request.get(options, function (error, response, body) {
 				if (!error && response.statusCode === 200) {
 					res.send({
 						data: body,
@@ -295,12 +295,12 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 	 */
 
 	// ****** Perform search query for a song ******
-	server.get('/youtube/search', function(req, res){
+	server.get('/youtube/search', function (req, res) {
 		var searchQuery = req.query.searchQuery;
 		var options = {
 			url: 'https://www.googleapis.com/youtube/v3/search',
-            qs: {
-                key: yt_api_key,
+			qs: {
+				key: yt_api_key,
 				part: 'snippet',
 				order: 'viewCount',
 				q: searchQuery,
@@ -308,7 +308,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 				videoEmbeddable: 'true'
 			}
 		};
-		request.get(options, function(error, response){
+		request.get(options, function (error, response) {
 			res.send(response);
 		});
 	});
