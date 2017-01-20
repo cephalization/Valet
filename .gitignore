@@ -38,3 +38,8 @@ jspm_packages
 
 # Private auth data
 .private
+
+# Editor configuration
+.idea
+.vscode
+.tern-project
