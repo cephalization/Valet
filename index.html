@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
+  <base href="/">
 	<title>Valet</title>
 
 	<link type="text/css" rel="stylesheet" href="src/css/bootstrap.min.css">
@@ -31,7 +32,7 @@
 			<a href="{{whichRoot()}}" class="jumbo-title"><h1>Valet</h1></a>
 			<h3>Let us do the work while you watch your music</h3>
 			<ul>
-				<li ng-class="{'nav-padder' : auth}"><a href="#about" class="about"><h4>About</h4></a></li>
+				<li ng-class="{'nav-padder' : auth}"><a href="/#!/about" class="about"><h4>About</h4></a></li>
 				<li ng-class="{'nav-padder' : auth}"><a href="/logout" class="about" ng-if="auth"><h4>Logout</h4></a></li>
 			</ul>
 		</div>
