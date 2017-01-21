@@ -64,7 +64,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 } else {
 
 	// Setup request functions
-	server.listen(3000, function () {
+	server.listen(8080, function () {
 		console.log('Connection Successful!');
 	});
 
@@ -149,7 +149,7 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 						maxAge: 600000
 					});
 
-					res.redirect('/#/loggedin');
+                    res.redirect('/#!/loggedin');
 				} else {
 					res.redirect('/#' +
 						querystring.stringify({

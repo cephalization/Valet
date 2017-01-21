@@ -138,25 +138,26 @@ app.controller('loginCtrl', function ($scope, $window, $http, $sce) {
 	$scope.findVideos = findVideos;
 });
 
-app.controller('titleCtrl', function ($scope, $http, $window) {
+app.controller('titleCtrl', function ($scope, $http, $window, $location) {
 	$http.get('http://' + location.host + '/spotify/isAuthenticated').then(function (response) {
 		$scope.auth = response.data.auth;
 	});
 
 	$scope.whichRoot = function () {
-		console.log('whichRoot has been triggered');
+        console.log('whichRoot has been triggered');
+        console.log('The $location.path is', $location.path());
 		if ($scope.auth != null) {
 			if ($scope.auth) {
 				console.log('Location check is', $window.location.href);
-				if ($window.location.href == 'http://' + location.host + '/#/') {
-					$window.location.href = '/#/loggedin';
+				if ($window.location.href == 'http://' + location.host + '/#!/') {
+                    $location.path('/loggedin');
 				}
-				return '/#/loggedin';
+                return '/#!/loggedin';
 			} else {
-				return '/#/';
+                return '/#!/';
 			}
 		}
-		return '/#/';
+        return '/#!/';
 	};
 });
 
@@ -165,13 +166,13 @@ app.config(function ($routeProvider) {
 		.when('/', {
 			templateUrl: 'login.html'
 		})
-		.when('/about', {
+        .when('/about', {
 			templateUrl: 'about.html'
 		})
-		.when('/loggedin', {
+        .when('/loggedin', {
 			templateUrl: 'user.html'
 		})
-		.when('/error', {
+        .when('/error', {
 			templateUrl: 'error.html'
 		});
 });
