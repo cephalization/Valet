@@ -123,7 +123,7 @@ app.controller('loginCtrl', function ($scope, $window, $http, $sce) {
 			searchRequest(query).then(function (response) {
 				videoLinks.push(
 					{
-						link: $sce.trustAsResourceUrl("https://www.youtube.com/embed/" + response.items[0].id.videoId)
+						link: $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + response.items[0].id.videoId)
 					});
 			}, function (error) {
 				console.log(error);
