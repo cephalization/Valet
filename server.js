@@ -2,7 +2,7 @@
 // Also specify server dependencies
 var express = require('express');
 var server = express();
-var fs = require('fs');
+var auth_info = require('./apiAuthentication.json');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var request = require('request');
@@ -22,7 +22,6 @@ var redirect_uri = '';
 var yt_api_key = '';
 
 // Load auth information (secret keys) from file so they aren't accidentally committed anymore
-var auth_info = fs.readFileSync('apiAuthentication.json');
 var loadAuth = function() {
 	client_id = auth_info.spotify_client_id;
 	client_secret = auth_info.spotify_client_secret;

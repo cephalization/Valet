@@ -37,7 +37,7 @@ jspm_packages
 .node_repl_history
 
 # Private auth data
-.private
+apiAuthentication.json
 
 # Editor configuration
 .idea
