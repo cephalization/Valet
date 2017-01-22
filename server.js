@@ -2,7 +2,7 @@
 // Also specify server dependencies
 var express = require('express');
 var server = express();
-var path = require('path');
+var fs = require('fs');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var request = require('request');
@@ -20,6 +20,16 @@ var redirect_uri = '';
  * https://developers.google.com/youtube/v3/getting-started
  */
 var yt_api_key = '';
+
+// Load auth information (secret keys) from file so they aren't accidentally committed anymore
+var auth_info = fs.readFileSync('apiAuthentication.json');
+var loadAuth = function() {
+	client_id = auth_info.spotify_client_id;
+	client_secret = auth_info.spotify_client_secret;
+	redirect_uri = auth_info.spotify_redirect_uri;
+	yt_api_key = auth_info.youtube_yt_api_key;
+};
+loadAuth();
 
 // The scopes variable determines what user data you can access when they login
 var scopes = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative';
@@ -59,7 +69,7 @@ var generateRandomString = function (length) {
 
 var stateKey = 'spotify_auth_state';
 
-if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key == '') {
+if (!client_id || !client_secret || !redirect_uri || !yt_api_key) {
 	console.log('Enter spotify authorization and youtube api information in the server.js file then try again.');
 } else {
 
@@ -142,11 +152,11 @@ if (client_id == '' || client_secret == '' || redirect_uri == '' || yt_api_key =
 					// Stored as an http only token that the browser does not have access to
 					res.cookie('accessToken', access_token, {
 						httpOnly: true,
-						maxAge: 600000
+						maxAge: (60000 * 60 * 24)
 					});
 					res.cookie('refreshToken', refresh_token, {
 						httpOnly: true,
-						maxAge: 600000
+						maxAge: (60000 * 60 * 24)
 					});
 
                     res.redirect('/#!/loggedin');
