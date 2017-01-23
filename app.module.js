@@ -33,7 +33,6 @@ app.controller('loginCtrl', function ($scope, $window, $http, $sce) {
 			alert('Could not authorize request for user playlists. Please sign in later.');
 			$window.location.href = '/';
 		} else {
-			console.log('playlist response items are', response.data.data.items);
 			$scope.playlists = response.data.data.items;
 		}
 	});
@@ -48,17 +47,14 @@ app.controller('loginCtrl', function ($scope, $window, $http, $sce) {
 
 	//Get songs for a playlist
 	$scope.getSongs = function (plistID) {
-		console.log('getSongs triggered. playlistID:', plistID, 'userID:', user.id);
 		$http.get('http://' + location.host + '/spotify/getSongs', {
 			params: {
 				userID: user.id,
 				playlistID: plistID
 			}
 		}).then(function (response) {
-			console.log('getSongs response', response);
-			console.log('response error:', response.error);
 			if (response.data.error) {
-				alert('Spotify encountered an error receiving tracks for this playlist.');
+				alert('This playlist was not created by the current user. Cannot load this just yet...');
 			} else {
 				$scope.tracks = response.data.data.items;
 				playlistSelected();
@@ -73,15 +69,13 @@ app.controller('loginCtrl', function ($scope, $window, $http, $sce) {
 	*/
 	// Handle state changes within the application
 	function playlistSelected() {
-		console.log('selecting playlist...');
 		$scope.playlistSelected = true;
 	}
 	function playlistDeselected() {
-		console.log('deselecting playlist...');
 		$scope.playlistSelected = false;
+		$scope.youtubeSearched = false;
 	}
 	function youtubeQueried() {
-		console.log('youtube has been sent a request...');
 		$scope.youtubeSearched = true;
 	}
 	$scope.playlistSelected = false;
@@ -133,7 +127,6 @@ app.controller('loginCtrl', function ($scope, $window, $http, $sce) {
 		if ($scope.links) {
 			$scope.youtubeSearched = true;
 		}
-		console.log('$scope.links contains', $scope.links);
 	}
 	$scope.findVideos = findVideos;
 });
@@ -144,20 +137,17 @@ app.controller('titleCtrl', function ($scope, $http, $window, $location) {
 	});
 
 	$scope.whichRoot = function () {
-        console.log('whichRoot has been triggered');
-        console.log('The $location.path is', $location.path());
 		if ($scope.auth != null) {
 			if ($scope.auth) {
-				console.log('Location check is', $window.location.href);
 				if ($window.location.href == 'http://' + location.host + '/#!/') {
-                    $location.path('/loggedin');
+					$location.path('/loggedin');
 				}
-                return '/#!/loggedin';
+				return '/#!/loggedin';
 			} else {
-                return '/#!/';
+				return '/#!/';
 			}
 		}
-        return '/#!/';
+		return '/#!/';
 	};
 });
 
@@ -166,13 +156,13 @@ app.config(function ($routeProvider) {
 		.when('/', {
 			templateUrl: 'login.html'
 		})
-        .when('/about', {
+		.when('/about', {
 			templateUrl: 'about.html'
 		})
-        .when('/loggedin', {
+		.when('/loggedin', {
 			templateUrl: 'user.html'
 		})
-        .when('/error', {
+		.when('/error', {
 			templateUrl: 'error.html'
 		});
 });
