@@ -20,8 +20,8 @@
 			<div class="content-panel content-anim" ng-if="playlistSelected && !youtubeSearched">
 				<div class="panel panel-default">
 					<div class="panel-heading text-center">
-						<span ng-click="deselectPlaylist()" class="glyphicon glyphicon-backward btn btn-warning btn-sm"></span>
-						Your songs
+						<span ng-click="deselectPlaylist()" class="glyphicon glyphicon-backward btn btn-default btn-sm"></span>
+						Playlist Preview
 					</div>
 					<div class="panel-body content-list">
 						<div ng-repeat="track in tracks">
@@ -49,7 +49,7 @@
       <div class="content-anim" ng-if="youtubeSearched">
         <div class="panel panel-default">
           <div class="panel-heading text-center">
-						<span ng-click="deselectPlaylist()" class="glyphicon glyphicon-backward btn btn-warning btn-sm"></span>
+						<span ng-click="deselectPlaylist()" class="glyphicon glyphicon-backward btn btn-default btn-sm"></span>
             Music Videos
           </div>
           <div class="panel-body video-list">

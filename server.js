@@ -22,7 +22,7 @@ var redirect_uri = '';
 var yt_api_key = '';
 
 // Load auth information (secret keys) from file so they aren't accidentally committed anymore
-var loadAuth = function() {
+var loadAuth = function () {
 	client_id = auth_info.spotify_client_id;
 	client_secret = auth_info.spotify_client_secret;
 	redirect_uri = auth_info.spotify_redirect_uri;
@@ -158,7 +158,7 @@ if (!client_id || !client_secret || !redirect_uri || !yt_api_key) {
 						maxAge: (60000 * 60 * 24)
 					});
 
-                    res.redirect('/#!/loggedin');
+					res.redirect('/#!/loggedin');
 				} else {
 					res.redirect('/#' +
 						querystring.stringify({
