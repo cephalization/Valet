@@ -46,15 +46,15 @@ app.controller('loginCtrl', function ($scope, $window, $http, $sce) {
 	};
 
 	//Get songs for a playlist
-	$scope.getSongs = function (plistID) {
+	$scope.getSongs = function (plistID, owner) {
 		$http.get('http://' + location.host + '/spotify/getSongs', {
 			params: {
-				userID: user.id,
+				userID: owner,
 				playlistID: plistID
 			}
 		}).then(function (response) {
 			if (response.data.error) {
-				alert('This playlist was not created by the current user. Cannot load this just yet...');
+				alert('There was an error retrieving this playlist from Spotify.');
 			} else {
 				$scope.tracks = response.data.data.items;
 				playlistSelected();

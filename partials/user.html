@@ -11,7 +11,7 @@
 					<div class="panel-heading text-center"> Your Playlists</div>
 					<div class="panel-body text-center content-list">
 						<div ng-repeat="playlist in playlists">
-							<div class="btn btn-success btn-block text-center playlist-btn" ng-click="getSongs(playlist.id)">
+							<div class="btn btn-success btn-block text-center playlist-btn" ng-click="getSongs(playlist.id, playlist.owner.id)">
 								<h4>{{::playlist.name}}</h4></div>
 						</div>
 					</div>
