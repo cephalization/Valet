@@ -15,4 +15,13 @@ If you want to install Valet and try it yourself, or if you want to spin up a de
 * Edit `apiAuthentication.json` and fill out the empty variables that hold API keys for the various APIs used by Valet
 * Run `node server.js` to start the server on the url denoted in `server.js`
 
+__Note__
+If you change the `apiAuthentication.json` file, consider running the following command,
+
+`git update-index --skip-worktree apiAuthentication.json`
+
+If you do not, git will want to commit changes to this file and you do not want that to happen.
+
+
+
 If you've got any questions or want to collaborate, feel free to contact me; @cephalization on twitter.
