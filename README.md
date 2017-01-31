@@ -11,7 +11,7 @@ If you want to install Valet and try it yourself, or if you want to spin up a de
 
 * Install some flavor of UNIX (Seriously, you'll be doing yourself a favor).
 * Install the latest version of Node, including NPM of course (You can use homebrew to accomplish this on OSX/MacOS).
-* Clone this repo into a directory, navigate to it in your favorite terminal, run `node install` in the root directory
+* Clone this repo into a directory, navigate to it in your favorite terminal, run `npm install` in the root directory
 * Edit `apiAuthentication.json` and fill out the empty variables that hold API keys for the various APIs used by Valet
 * Run `node server.js` to start the server on the url denoted in `server.js`
 
