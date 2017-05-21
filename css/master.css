@@ -121,6 +121,7 @@ a.login:hover {
 
 .panel {
   border-color: #1ED760;
+	margin-top: 20px;
 }
 
 .content-anim.ng-enter {
@@ -208,22 +209,73 @@ a.login:hover {
 	max-height: 250px;
 }
 
-.sidenav {
+/* Sidenav CSS*/
+.nav-width {
+	width: 16.66%;
+	float: left;
+	position: relative;
+}
+
+.fixed-sidenav {
+	position: fixed;
+	left: 0;
 	background-color: #EEE;
 	height: 100%;
+	box-shadow: 5px 10px 15px 5px rgba(0,0,0,.1);
+	z-index: 99999;
+}
+
+.navbar {
+	margin-bottom: 0;
 }
 
 .full-height {
 	height: 100vh;
 }
 
-.full-width {
-	margin-left: 0;
-	margin-right: 0;
-	padding-left: 0;
-	padding-right: 0;
+/* Make sidebar nav vertical */
+/* From codepen https://codepen.io/mikeair/pen/Kfyin */
+@media (max-width:767px) {
+	.fixed-sidenav {
+		width: 80%;
+	}
 }
 
-.fill-width {
-	width: 100%;
+@media (min-width: 768px) {
+	.navbar-collapse.collapse {
+		height: 100vh !important;
+	}
+
+	.sidenav {
+		background-color: #EEE;
+		height: 100%;
+	}
+
+	.full-width {
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.fill-width {
+		width: 100%;
+	}
+
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
 }

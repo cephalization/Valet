@@ -23,11 +23,11 @@
 </head>
 
 <body ng-app="valetState">
+	<div ng-include="'partials/sidenav.html'"></div>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="full-height full-width col-md-2" ng-include="'partials/sidenav.html'"></div>
 			<!-- Angular App Injection -->
-			<div class="col-md-10" ng-view></div>
+			<div class="col-xs-12 col-sm-offset-2 col-sm-10 col-md-offset-2 col-md-10" ng-view></div>
 		</div>
 	</div>
 </body>

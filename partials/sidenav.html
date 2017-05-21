@@ -1,11 +1,25 @@
-<div ng-controller="titleCtrl" class="panel panel-default sidenav fill-width">
-  <div class="panel-heading login-panel-heading text-center">
-    <a href="{{whichRoot()}}"><h2><b>Valet</b></h2></a>
+<div ng-controller="titleCtrl">
+  <div  class="navbar navbar-static-top navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" ng-click="toggleSidenav()">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="panel-heading login-panel-heading text-center">
+          <a href="{{whichRoot()}}" class="navbar-brand"><b>Valet</b></a>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="panel-body">
-    <ul>
-      <li ng-class="{'nav-padder' : auth}"><a href="/#!/about" class="about"><h4>About</h4></a></li>
-      <li ng-class="{'nav-padder' : auth}"><a href="/logout" class="about" ng-if="auth"><h4>Logout</h4></a></li>
-    </ul>
+  <div class="sidenav nav-width full-height fixed-sidenav collapse navbar-collapse" id="sidenav">
+    <div class="panel-body">
+      <ul>
+        <li><a href="/#!/about" class="about"><h4>About</h4></a></li>
+        <li ng-if="auth"><a href="/logout" class="about"><h4>Logout</h4></a></li>
+      </ul>
+    </div>
   </div>
 </div>
