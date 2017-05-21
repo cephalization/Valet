@@ -1,68 +1,70 @@
 <div class="row" ng-controller="loginCtrl">
-	<div class="jumbotron col-xs-12 col-md-8 col-md-offset-2">
-		<div class="row">
-			<img class="mx-auto img-circle img-responsive profile-img col-md-6 col-xs-6" src="{{::userInfo.images[0].url}}" alt="Profile Picture" />
-			<h2 class="col-md-6 col-xs-6 username text-center">Welcome, {{::userName()}}.</h2>
-		</div>
-		<hr/>
-		<div class="transitional-div">
-			<div class="content-panel content-anim" ng-if="!playlistSelected">
-				<div class="panel panel-default">
-					<div class="panel-heading text-center"> Your Playlists</div>
-					<div class="panel-body text-center content-list">
-						<div ng-repeat="playlist in playlists">
-							<div class="btn btn-success btn-block text-center playlist-btn" ng-click="getSongs(playlist.id, playlist.owner.id)">
-								<h4>{{::playlist.name}}</h4></div>
+	<div class="col-md-8 col-md-offset-2">
+		<div class="jumbotron">
+			<div class="row">
+				<img class="mx-auto img-circle img-responsive profile-img col-md-6 col-xs-6" src="{{::userInfo.images[0].url}}" alt="Profile Picture" />
+				<h2 class="col-md-6 col-xs-6 username text-center">Welcome, {{::userName()}}.</h2>
+			</div>
+			<hr/>
+			<div class="transitional-div">
+				<div class="content-panel content-anim" ng-if="!playlistSelected">
+					<div class="panel panel-default">
+						<div class="panel-heading text-center"> Your Playlists</div>
+						<div class="panel-body text-center content-list">
+							<div ng-repeat="playlist in playlists">
+								<div class="btn btn-success btn-block text-center playlist-btn" ng-click="getSongs(playlist.id, playlist.owner.id)">
+									<h4>{{::playlist.name}}</h4></div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="content-panel content-anim" ng-if="playlistSelected && !youtubeSearched">
-				<div class="panel panel-default">
-					<div class="panel-heading text-center">
-						<span ng-click="deselectPlaylist()" class="glyphicon glyphicon-backward btn btn-default btn-sm"></span>
-						Playlist Preview
-					</div>
-					<div class="panel-body content-list">
-						<div ng-repeat="track in tracks">
-							<div class="song-box container-fluid">
-								<div class="media">
-									<a class="media-left">
-										<img class="album-art media-object" src="{{::track.track.album.images[0].url}}" alt="AlbumArt" />
-									</a>
-									<div class="media-body">
-										<h4 class=media-heading>{{::track.track.name}}</h4>
-										<ul class="artist-list">
-											<li ng-repeat="artist in track.track.artists">{{::artist.name}}</p>
-										</ul>
+				<div class="content-panel content-anim" ng-if="playlistSelected && !youtubeSearched">
+					<div class="panel panel-default">
+						<div class="panel-heading text-center">
+							<span ng-click="deselectPlaylist()" class="glyphicon glyphicon-backward btn btn-default btn-sm"></span>
+							Playlist Preview
+						</div>
+						<div class="panel-body content-list">
+							<div ng-repeat="track in tracks">
+								<div class="song-box container-fluid">
+									<div class="media">
+										<a class="media-left">
+											<img class="album-art media-object" src="{{::track.track.album.images[0].url}}" alt="AlbumArt" />
+										</a>
+										<div class="media-body">
+											<h4 class=media-heading>{{::track.track.name}}</h4>
+											<ul class="artist-list">
+												<li ng-repeat="artist in track.track.artists">{{::artist.name}}</p>
+											</ul>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="panel-footer text-center">
-						Take my keys
-						<span class="glyphicon glyphicon-search btn btn-success btn-sm" ng-click="findVideos(tracks)"></span>
+						<div class="panel-footer text-center">
+							Take my keys
+							<span class="glyphicon glyphicon-search btn btn-success btn-sm" ng-click="findVideos(tracks)"></span>
+						</div>
 					</div>
 				</div>
+	      <div class="content-anim" ng-if="youtubeSearched">
+	        <div class="panel panel-default">
+	          <div class="panel-heading text-center">
+							<span ng-click="deselectPlaylist()" class="glyphicon glyphicon-backward btn btn-default btn-sm"></span>
+	            Music Videos
+	          </div>
+	          <div class="panel-body video-list">
+	            <div ng-repeat="link in links">
+	                <div class="video-box">
+	                    <div class="embed-responsive embed-responsive-16by9">
+	                      <iframe class="embed-responsive-item" src="{{::link.link}}"></iframe>
+	                    </div>
+	                </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
 			</div>
-      <div class="content-anim" ng-if="youtubeSearched">
-        <div class="panel panel-default">
-          <div class="panel-heading text-center">
-						<span ng-click="deselectPlaylist()" class="glyphicon glyphicon-backward btn btn-default btn-sm"></span>
-            Music Videos
-          </div>
-          <div class="panel-body video-list">
-            <div ng-repeat="link in links">
-                <div class="video-box">
-                    <div class="embed-responsive embed-responsive-16by9">
-                      <iframe class="embed-responsive-item" src="{{::link.link}}"></iframe>
-                    </div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
 		</div>
 	</div>
 </div>
