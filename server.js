@@ -37,6 +37,7 @@ var scopes = 'user-read-private user-read-email playlist-read-private playlist-r
 server.use('/src/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 server.use('/src/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 server.use('/src/css', express.static(__dirname + '/css'));
+server.use('/src/fonts', express.static(__dirname + '/fonts'));
 server.use('/src/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 server.use('/src/scripts', express.static(__dirname + '/node_modules/angular'));
 server.use('/src/scripts', express.static(__dirname + '/node_modules/angular-route'));

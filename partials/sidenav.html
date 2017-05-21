@@ -15,11 +15,22 @@
     </div>
   </div>
   <div class="sidenav nav-width full-height fixed-sidenav collapse navbar-collapse" id="sidenav">
-    <div class="panel-body">
+    <div style="position:relative; min-height: 100%;">
+      <!-- Links -->
       <ul>
         <li><a href="/#!/about" class="about"><h4>About</h4></a></li>
         <li ng-if="auth"><a href="/logout" class="about"><h4>Logout</h4></a></li>
       </ul>
+      <!-- User Playlists -->
+      <div class="playlists">
+
+      </div>
+      <!-- Credits, Woo -->
+      <div style="position:fixed; bottom: 0">
+        <h6>Made with <i class="fa fa-code fa-2x" aria-hidden="true"></i></h6>
+        <a href="https://www.github.com/cephalization/valet"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
+        <a href="https://www.twitter.com/cephalization"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
+      </span>
     </div>
   </div>
 </div>
