@@ -20,30 +20,15 @@
 	<script type="text/javascript" src="src/scripts/angular-resource.min.js"></script>
 	<script type="text/javascript" src="src/scripts/angular-animate.min.js"></script>
 	<script type="text/javascript" src="src/scripts/app.module.js"></script>
-
-
-
-
 </head>
 
 <body ng-app="valetState">
 	<div class="container-fluid">
-		<div ng-controller="titleCtrl">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<div class="title text-center jumbotron">
-						<a href="{{whichRoot()}}" class="jumbo-title"><h1>Valet</h1></a>
-						<h3>Let us do the work while you watch your music</h3>
-						<ul>
-							<li ng-class="{'nav-padder' : auth}"><a href="/#!/about" class="about"><h4>About</h4></a></li>
-							<li ng-class="{'nav-padder' : auth}"><a href="/logout" class="about" ng-if="auth"><h4>Logout</h4></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
+		<div class="row">
+			<div class="full-height full-width col-md-2" ng-include="'partials/sidenav.html'"></div>
+			<!-- Angular App Injection -->
+			<div class="col-md-10" ng-view></div>
 		</div>
-		<!-- Angular App Injection -->
-		<div ng-view></div>
 	</div>
 </body>
 

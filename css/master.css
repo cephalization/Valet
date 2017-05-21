@@ -52,6 +52,8 @@ body {
   background-color: #3d3d3f;
 	padding: 0;
 	margin: 0;
+	max-height: 100vh;
+	overflow: hidden;
 }
 
 a.about:link {
@@ -93,6 +95,15 @@ li {
 .login {
   text-align: center;
   color: #3d3d3f;
+}
+
+a {
+	color: inherit;
+}
+
+a:hover, a:active, a:focus {
+	text-decoration: none;
+	color: inherit;
 }
 
 a.login:link {
@@ -195,4 +206,24 @@ a.login:hover {
 .profile-img {
 	max-width: 250px;
 	max-height: 250px;
+}
+
+.sidenav {
+	background-color: #EEE;
+	height: 100%;
+}
+
+.full-height {
+	height: 100vh;
+}
+
+.full-width {
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.fill-width {
+	width: 100%;
 }

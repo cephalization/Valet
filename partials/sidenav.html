@@ -1,0 +1,11 @@
+<div ng-controller="titleCtrl" class="panel panel-default sidenav fill-width">
+  <div class="panel-heading login-panel-heading text-center">
+    <a href="{{whichRoot()}}"><h2><b>Valet</b></h2></a>
+  </div>
+  <div class="panel-body">
+    <ul>
+      <li ng-class="{'nav-padder' : auth}"><a href="/#!/about" class="about"><h4>About</h4></a></li>
+      <li ng-class="{'nav-padder' : auth}"><a href="/logout" class="about" ng-if="auth"><h4>Logout</h4></a></li>
+    </ul>
+  </div>
+</div>
