@@ -54,6 +54,7 @@ body {
 	margin: 0;
 	max-height: 100vh;
 	overflow: hidden;
+	color: #333333;
 }
 
 a.about:link {
@@ -128,9 +129,9 @@ a.login:hover {
 	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) .75s;
 }
 
-/*.content-anim.ng-leave {
+.content-anim.ng-leave {
 	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s;
-}*/
+}
 
 .panel-default > .login-panel-heading {
   background-image: none;
@@ -249,6 +250,7 @@ a.login:hover {
 	.sidenav {
 		background-color: #EEE;
 		height: 100%;
+		min-width: 145px;
 	}
 
 	.full-width {
