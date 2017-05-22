@@ -1,9 +1,14 @@
-<div ng-controller="contentController" class="jumbotron">
-	<div class="row">
-		<img class="mx-auto img-circle img-responsive profile-img col-md-6 col-xs-6" src="{{::userInfo.images[0].url}}" alt="Profile Picture" />
-		<h2 class="col-md-6 col-xs-6 username text-center">Welcome, {{::userName()}}.</h2>
+<div ng-controller="contentController" class="panel panel-default">
+	<div class="panel-heading custom-panel-heading text-center">
+		<h2>May we take your keys?</h2>
 	</div>
-	<hr/>
+	<!-- <div class="information-panel">
+		<div class="row">
+			<img class="mx-auto img-circle img-responsive profile-img" src="{{::userInfo.images[0].url}}" alt="Profile Picture" />
+			<h2 class="username text-center">Welcome, {{::userName()}}.</h2>
+		</div>
+		<h2>Choose a playlist</h2>
+	</div> -->
 	<div class="transitional-div">
 		<div class="content-panel content-anim" ng-if="!playlistSelected">
 			<div class="panel panel-default">

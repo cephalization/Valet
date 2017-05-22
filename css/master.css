@@ -49,7 +49,7 @@ a:hover, a:visited, a:link, a:active a:focus {
 }
 
 body {
-  background-color: #EBF1F5;
+  background-color: #ECF2F6;
 	padding: 0;
 	margin: 0;
 	max-height: 100vh;
@@ -122,7 +122,7 @@ a.login:hover {
 
 .panel {
   border-color: #1ED760;
-	margin-top: 20px;
+	border-radius: 0;
 }
 
 .content-anim.ng-enter {
@@ -133,10 +133,11 @@ a.login:hover {
 	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s;
 }
 
-.panel-default > .login-panel-heading {
+.panel-default > .custom-panel-heading {
   background-image: none;
   background-color: #1ED760;
   color: #3d3d3f;
+	border-radius: 0px;
 }
 
 .content-anim.ng-enter,
@@ -210,6 +211,13 @@ a.login:hover {
 	max-height: 250px;
 }
 
+.information-panel {
+	background-color: #FFF;
+	padding: 25px;
+	margin: 0;
+	border-bottom: 1px solid #A0ACBF;
+}
+
 /* Sidenav CSS*/
 .nav-width {
 	width: 16.66%;
@@ -222,7 +230,6 @@ a.login:hover {
 	left: 0;
 	background-color: #EEE;
 	height: 100%;
-	box-shadow: 5px 10px 15px 5px rgba(0,0,0,.1);
 	z-index: 99999;
 }
 
@@ -237,7 +244,8 @@ a.login:hover {
 .navbar-custom {
     background-color: #FFF;
     color: #5A5D69;
-    border-bottom: 2px solid #A0ACBF;
+    border-bottom: 1px solid #A0ACBF;
+		box-shadow: 10px 0 5px 3px rgba(0,0,0,.1);
 }
 
 .navbar-custom .icon-bar {
@@ -293,11 +301,17 @@ a.login:hover {
 	height: 100vh;
 }
 
+.full-width {
+	padding-left: 0;
+	padding-right: 0;
+}
+
 /* Make sidebar nav vertical */
 /* From codepen https://codepen.io/mikeair/pen/Kfyin */
 @media (max-width:767px) {
 	.fixed-sidenav {
 		width: 80%;
+		box-shadow: 5px 10px 15px 5px rgba(0,0,0,.1);
 	}
 }
 
@@ -309,13 +323,6 @@ a.login:hover {
 	.sidenav {
 		height: 100%;
 		min-width: 145px;
-	}
-
-	.full-width {
-		margin-left: 0;
-		margin-right: 0;
-		padding-left: 0;
-		padding-right: 0;
 	}
 
 	.fill-width {
