@@ -34,19 +34,32 @@ loadAuth();
 var scopes = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative';
 
 // Setup file routing
-server.use('/src/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
-server.use('/src/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
-server.use('/src/css', express.static(__dirname + '/css'));
+var nodeIncludes = [
+	express.static(__dirname + '/node_modules/bootstrap/dist/js'),
+	express.static(__dirname + '/node_modules/bootstrap/dist/css'),
+	express.static(__dirname + '/node_modules/bootstrap/dist/js'),
+	express.static(__dirname + '/node_modules/angular'),
+	express.static(__dirname + '/node_modules/angular-route'),
+	express.static(__dirname + '/node_modules/angular-resource'),
+	express.static(__dirname + '/node_modules/angular-animate')
+];
+server.use('/src/libraries', nodeIncludes);
+var scriptIncludes = [
+	express.static(__dirname + '/js'),
+	express.static(__dirname + '/js/controllers'),
+	express.static(__dirname + '/js/services')
+];
+server.use('/src/modules', scriptIncludes);
+var styleIncludes = [
+	express.static(__dirname + '/css'),
+	express.static(__dirname + '/img')
+];
+server.use('/src/styles', styleIncludes);
+var contentIncludes = [
+	express.static(__dirname + '/partials')
+];
+server.use('/src/pages', contentIncludes);
 server.use('/src/fonts', express.static(__dirname + '/fonts'));
-server.use('/src/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
-server.use('/src/scripts', express.static(__dirname + '/node_modules/angular'));
-server.use('/src/scripts', express.static(__dirname + '/node_modules/angular-route'));
-server.use('/src/scripts', express.static(__dirname + '/node_modules/angular-resource'));
-server.use('/src/scripts', express.static(__dirname + '/node_modules/angular-animate'));
-server.use('/src/scripts', express.static(__dirname + '/controller'));
-server.use('/src/scripts', express.static(__dirname + '/'));
-server.use(express.static(__dirname + '/partials'));
-server.use(express.static(__dirname + '/src/img'));
 server.use(express.static(__dirname + '/')).use(cookieParser());
 
 

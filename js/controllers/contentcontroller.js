@@ -1,6 +1,4 @@
-var app = angular.module('valetState', ['ngResource', 'ngAnimate', 'ngRoute']);
-// stateCtrl
-app.controller('loginCtrl', function ($scope, $window, $http, $sce) {
+app.controller('contentController', function ($scope, $window, $http, $sce) {
 
 	// Get user's spotify information/profile
 	console.log('location host is', location.host);
@@ -129,50 +127,4 @@ app.controller('loginCtrl', function ($scope, $window, $http, $sce) {
 		}
 	}
 	$scope.findVideos = findVideos;
-});
-
-app.controller('titleCtrl', function ($scope, $http, $window, $location) {
-	$http.get('http://' + location.host + '/spotify/isAuthenticated').then(function (response) {
-		$scope.auth = response.data.auth;
-	});
-
-	console.log('ng scope', $scope);
-	$scope.whichRoot = function () {
-		if ($scope.auth != null) {
-			if ($scope.auth) {
-				if ($window.location.href == 'http://' + location.host + '/#!/') {
-					$location.path('/loggedin');
-				}
-				return '/#!/loggedin';
-			} else {
-				return '/#!/';
-			}
-		}
-		return '/#!/';
-	};
-
-	$scope.toggleSidenav = function() {
-		var sidenav = document.getElementById('sidenav');
-		if (sidenav.classList.contains('collapse')) {
-			sidenav.classList.remove('collapse');
-		} else {
-			sidenav.classList.add('collapse');
-		}
-	};
-});
-
-app.config(function ($routeProvider) {
-	$routeProvider
-		.when('/', {
-			templateUrl: 'login.html'
-		})
-		.when('/about', {
-			templateUrl: 'about.html'
-		})
-		.when('/loggedin', {
-			templateUrl: 'user.html'
-		})
-		.when('/error', {
-			templateUrl: 'error.html'
-		});
 });

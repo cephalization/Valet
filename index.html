@@ -9,22 +9,24 @@
   <base href="/">
 	<title>Valet</title>
 
-	<link type="text/css" rel="stylesheet" href="src/css/bootstrap.min.css">
-	<link rel="stylesheet" href="src/css/font-awesome.min.css">
-	<link type="text/css" rel="stylesheet" href="src/css/master.css">
+	<link type="text/css" rel="stylesheet" href="src/libraries/bootstrap.min.css">
+	<link rel="stylesheet" href="src/styles/font-awesome.min.css">
+	<link type="text/css" rel="stylesheet" href="src/styles/master.css">
 	<!-- Scripts -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-	<script type="text/javascript" src="src/scripts/bootstrap.min.js"></script>
+	<script type="text/javascript" src="src/libraries/bootstrap.min.js"></script>
 	<!-- Angular Links -->
-	<script type="text/javascript" src="src/scripts/angular.min.js"></script>
-	<script type="text/javascript" src="src/scripts/angular-route.min.js"></script>
-	<script type="text/javascript" src="src/scripts/angular-resource.min.js"></script>
-	<script type="text/javascript" src="src/scripts/angular-animate.min.js"></script>
-	<script type="text/javascript" src="src/scripts/app.module.js"></script>
+	<script type="text/javascript" src="src/libraries/angular.min.js"></script>
+	<script type="text/javascript" src="src/libraries/angular-route.min.js"></script>
+	<script type="text/javascript" src="src/libraries/angular-resource.min.js"></script>
+	<script type="text/javascript" src="src/libraries/angular-animate.min.js"></script>
+	<script type="text/javascript" src="src/modules/app.js"></script>
+	<script type="text/javascript" src="src/modules/contentcontroller.js"></script>
+	<script type="text/javascript" src="src/modules/navcontroller.js"></script>
 </head>
 
 <body ng-app="valetState">
-	<div ng-include="'partials/sidenav.html'"></div>
+	<div ng-include="'src/pages/sidenav.html'"></div>
 	<div class="container-fluid">
 		<div class="row">
 			<!-- Angular App Injection -->
