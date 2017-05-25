@@ -202,8 +202,11 @@ a.login:hover {
 }
 
 .profile-img {
-  max-width: 250px;
-  max-height: 250px;
+  width: 50%;
+	height: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 15px;
 }
 
 .information-panel {
@@ -277,6 +280,16 @@ a.login:hover {
   padding-left:10px;
 }
 
+.playlists {
+	overflow-y: auto;
+	max-height: 35em;
+}
+
+.playlist {
+	cursor: pointer;
+	border-bottom: 1px solid #6C788A;
+}
+
 .sidenav hr {
   height: 1px;
   margin: 0;
@@ -305,9 +318,28 @@ a.login:hover {
 /* From codepen https://codepen.io/mikeair/pen/Kfyin */
 @media (max-width:767px) {
   .fixed-sidenav {
-    width: 80%;
-    box-shadow: 5px 10px 15px 5px rgba(0,0,0,.1);
+    width: 100%;
+    /*box-shadow: 5px 10px 15px 5px rgba(0,0,0,.1);*/
   }
+	.profile-img {
+	  width: 25%;
+		height: 25%;
+		margin-left: auto;
+		margin-right: auto;
+		padding-top: 10px;
+	}
+
+	.sidenav li {
+		font-size: 1.5em;
+	}
+
+	.playlists {
+		max-height: 26em;
+	}
+
+	.sidenav hr {
+		border: 2px dotted #293241;
+	}
 }
 
 @media (min-width: 768px) {

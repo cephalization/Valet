@@ -14,30 +14,41 @@
   </div>
   <div class="sidenav nav-width full-height fixed-sidenav collapse navbar-collapse" id="sidenav">
     <div style="position:relative; min-height: 100%;">
-      <!-- Links -->
-      <ul>
-        <li>
-          <a href="/#!/about" class="about">
-            <h4>
-              <i class="fa fa-info-circle"></i>
-              About
-            </h4>
-          </a>
-        </li>
-        <li ng-if="auth">
-          <a ng-href="/logout" ng-click="logout()" class="about">
-            <h4>
-              <i class="fa fa-sign-out"></i>
-              Logout
-            </h4>
-          </a>
-        </li>
-      </ul>
-      <hr/>
+			<div class="row">
+				<!-- Avatar -->
+				<div ng-if="auth" class="col-xs-6 col-sm-12 col-md-12 col-lg-12">
+					<img src="{{::account.images[0].url}}" alt="Profile" class="img-circle img-responsive profile-img">
+					<h3 class="text-center">Welcome, {{::userName()}}</h3>
+					<hr class="hidden-xs"/>
+				</div>
+				<!-- Links -->
+				<ul class="col-xs-6 col-sm-12 col-md-12 col-lg-12">
+					<li>
+						<a href="/#!/about" class="about">
+							<h4>
+								<i class="fa fa-info-circle"></i>
+								About
+							</h4>
+						</a>
+					</li>
+					<li ng-if="auth">
+						<a ng-href="/logout" ng-click="logout()" class="about">
+							<h4>
+								<i class="fa fa-sign-out"></i>
+								Logout
+							</h4>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<hr/>
       <!-- User Playlists -->
-      <div class="playlists">
-
-      </div>
+      <ul ng-if="auth" class="playlists">
+      	<li ng-repeat="playlist in account.playlists" class="playlist">
+					{{::playlist.name}}
+				</li>
+      </ul>
+			<hr/>
       <!-- Credits, Woo -->
       <div style="position:fixed; bottom: 15px; left: 15px">
         <h6>

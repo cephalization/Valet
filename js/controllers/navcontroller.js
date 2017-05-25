@@ -18,6 +18,15 @@ app.controller('navController', function ($rootScope, $scope, $http, $window, $l
 		});
 	}
 
+	$scope.userName = function () {
+		console.log('username');
+		if ($scope.account.display_name != null) {
+			return $scope.account.display_name;
+		} else {
+			return $scope.account.id;
+		}
+	};
+
 	console.log('ng scope', $scope);
 	$scope.whichRoot = function () {
 		if ($scope.auth != null) {

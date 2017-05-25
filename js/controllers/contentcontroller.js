@@ -18,15 +18,6 @@ app.controller('contentController', function ($scope, $window, $http, $sce, acco
 		});
 	}
 
-	// Decide which Spotify username to use
-	$scope.userName = function () {
-		if (user.display_name == null) {
-			return user.id;
-		} else {
-			return user.display_name;
-		}
-	};
-
 	//Get songs for a playlist
 	$scope.getSongs = function (plistID, owner) {
 		$http.get('http://' + location.host + '/spotify/getSongs', {
