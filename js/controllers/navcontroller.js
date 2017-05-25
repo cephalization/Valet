@@ -51,6 +51,18 @@ app.controller('navController', function ($rootScope, $scope, $http, $window, $l
 		}
 	};
 
+    $scope.setPlaylist = function(playlist) {
+        if (playlist != $scope.selectedPlaylist) {
+            accountService.setPlaylist(playlist);
+            $scope.selectedPlaylist = playlist;
+            $rootScope.$broadcast('playlist:selected');
+        }
+    }
+
+    $scope.$on('playlist:removed', function() {
+        $scope.selectedPlaylist = accountService.playlist;
+    })
+
 	$scope.logout = function () {
 		accountService.logout();
 	};

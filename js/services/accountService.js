@@ -7,6 +7,7 @@ app.service('accountService', function($http){
 		auth: false
 	};
 	var loaded = false;
+    var playlist = null;
 
 	/**
 	 * Get the user's account
@@ -45,7 +46,15 @@ app.service('accountService', function($http){
 			loaded = true;
 			callback();
 		});
-	};
+    };
+
+    this.setPlaylist = function(playlist) {
+        this.playlist = playlist;
+    }
+
+    this.removePlaylist = function() {
+        this.playlist = null;
+    }
 
 	/**
 	 * Refresh account properties with a user's Spotify accessToken.

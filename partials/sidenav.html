@@ -44,7 +44,7 @@
 			<hr/>
       <!-- User Playlists -->
       <ul ng-if="auth" class="playlists">
-      	<li ng-repeat="playlist in account.playlists" class="playlist">
+        <li ng-repeat="playlist in account.playlists" class="playlist" ng-click="setPlaylist(playlist)" ng-class="{'active-link':playlist == selectedPlaylist}">
 					{{::playlist.name}}
 				</li>
       </ul>

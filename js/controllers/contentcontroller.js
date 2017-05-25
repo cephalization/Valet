@@ -1,4 +1,4 @@
-app.controller('contentController', function ($scope, $window, $http, $sce, accountService) {
+app.controller('contentController', function ($rootScope, $scope, $window, $http, $sce, accountService) {
 
 	// Load user account from service
 	var user = {};
@@ -47,6 +47,8 @@ app.controller('contentController', function ($scope, $window, $http, $sce, acco
 	function playlistDeselected() {
 		$scope.playlistSelected = false;
 		$scope.youtubeSearched = false;
+        accountService.removePlaylist();
+        $rootScope.$broadcast('playlist:removed');
 	}
 	function youtubeQueried() {
 		$scope.youtubeSearched = true;
@@ -56,6 +58,10 @@ app.controller('contentController', function ($scope, $window, $http, $sce, acco
 	$scope.deselectPlaylist = playlistDeselected;
 	$scope.youtubeSearched = false;
 	$scope.searchYoutube = youtubeQueried;
+    $scope.$on('playlist:selected', function(){
+        var playlist = accountService.playlist;
+        $scope.getSongs(playlist.id, playlist.owner.id);
+    })
 
 	/*
      * YOUTUBE REQUESTS
@@ -89,10 +95,15 @@ app.controller('contentController', function ($scope, $window, $http, $sce, acco
 			var query = track.track.artists[0].name + track.track.name;
 			searchRequest(query).then(function (response) {
 				console.log('links', response);
+                for(var j = 0, len = 10; j < len; j++) {
+                    if (response.items[j] != null) {
 				videoLinks.push(
 					{
 						link: $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + response.items[0].id.videoId)
 					});
+                    }
+                    j = 11;
+                }
 			}, function (error) {
 				console.log(error);
 			});

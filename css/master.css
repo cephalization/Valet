@@ -52,6 +52,11 @@ body {
   color: #333333;
 }
 
+
+.helper-text {
+  color: #5A5D69;
+}
+
 a.about:link {
   color: #3d3d3f;
 }
@@ -158,13 +163,14 @@ a.login:hover {
 .content-list {
   overflow: auto;
   height: 50em;
-  width: 18em;
+  width: 100%;
   text-overflow: ellipsis;
 }
 
 .video-list {
   overflow: auto;
-  max-height: 550px;
+  height: 50em;
+  width: 100%;
 }
 
 .song-box {
@@ -173,6 +179,7 @@ a.login:hover {
   padding-bottom: 15px;
   margin-bottom: 10px;
   border: medium solid #1ED760;
+  width: 100%;
 }
 
 .video-box {
@@ -183,8 +190,8 @@ a.login:hover {
 }
 
 .album-art {
-  height: 64px;
-  width: 64px;
+  height: 128px;
+  width: 128px;
   border: 1px solid #1ED760;
 }
 
@@ -269,6 +276,13 @@ a.login:hover {
   padding-bottom: 5px;
 }
 
+
+.active-link {
+  background-color: #2F3949;
+  border-left: 5px solid #1ED760;
+  padding-left:10px!important;
+}
+
 .sidenav li a {
   width: 100%;
   height: 100%;
@@ -297,12 +311,6 @@ a.login:hover {
   border-left: 0;
   border-right: 0;
   background-color: #354052;
-}
-
-.active-link {
-  background-color: #2F3949;
-  border-left: 5px solid #1ED760;
-  padding-left:10px;
 }
 
 .full-height {
@@ -340,6 +348,10 @@ a.login:hover {
 	.sidenav hr {
 		border: 2px dotted #293241;
 	}
+
+    .visible-xs {
+        display: inline-block!important;
+    }
 }
 
 @media (min-width: 768px) {

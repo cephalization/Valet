@@ -10,13 +10,11 @@
 <h2>Choose a playlist</h2>
 </div> -->
 <div class="transitional-div">
-	<!-- <div class="content-anim" ng-if="!playlistSelected">
-		<div class="content-list">
-			<div ng-repeat="playlist in playlists" class="btn btn-default btn-block playlist-btn" ng-click="getSongs(playlist.id, playlist.owner.id)">
-				<h4>{{::playlist.name}}</h4>
-			</div>
-		</div>
-	</div> -->
+	<div class="content-anim" ng-if="!playlistSelected">
+    <div class="text-center">
+      <h1 class="helper-text page-header"><i class="hidden-xs fa fa-long-arrow-left"></i> Select a playlist <i class="visible-xs fa fa-level-up"></i></h1>
+    </div>
+	</div>
 	<div class="content-panel content-anim" ng-if="playlistSelected && !youtubeSearched">
 		<div class="panel panel-default">
 			<div class="panel-heading text-center">
@@ -24,21 +22,19 @@
 				Playlist Preview
 			</div>
 			<div class="panel-body content-list">
-				<div ng-repeat="track in tracks">
-					<div class="song-box container-fluid">
-						<div class="media">
-							<a class="media-left">
-								<img class="album-art media-object" src="{{::track.track.album.images[0].url}}" alt="AlbumArt" />
-							</a>
-							<div class="media-body">
-								<h4 class=media-heading>{{::track.track.name}}</h4>
-								<ul class="artist-list">
-									<li ng-repeat="artist in track.track.artists">{{::artist.name}}</p>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
+				<div class="song-box" ng-repeat="track in tracks">
+          <div class="media">
+            <a class="media-left">
+              <img class="album-art media-object" src="{{::track.track.album.images[0].url}}" alt="AlbumArt" />
+            </a>
+            <div class="media-body">
+              <h4 class=media-heading>{{::track.track.name}}</h4>
+              <ul class="artist-list">
+                <li ng-repeat="artist in track.track.artists">{{::artist.name}}</p>
+                </ul>
+              </div>
+            </div>
+          </div>
 				</div>
 				<div class="panel-footer text-center">
 					Take my keys
