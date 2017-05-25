@@ -337,6 +337,19 @@ a.login:hover {
 		padding-top: 10px;
 	}
 
+	.content-list {
+	  overflow: auto;
+	  height: 28em;
+	  width: 100%;
+	  text-overflow: ellipsis;
+	}
+
+	.video-list {
+	  overflow: auto;
+	  height: 28em;
+	  width: 100%;
+	}
+
 	.sidenav li {
 		font-size: 1.5em;
 	}
