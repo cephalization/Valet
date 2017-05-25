@@ -25,7 +25,7 @@
           </a>
         </li>
         <li ng-if="auth">
-          <a href="/logout" class="about">
+          <a ng-href="/logout" ng-click="logout()" class="about">
             <h4>
               <i class="fa fa-sign-out"></i>
               Logout

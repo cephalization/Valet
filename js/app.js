@@ -1,6 +1,7 @@
 var app = angular.module('valetState', ['ngResource', 'ngAnimate', 'ngRoute']);
 
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider, $controllerProvider) {
+	app.cp = $controllerProvider;
 	$routeProvider
 		.when('/', {
 			templateUrl: 'src/pages/login.html'
@@ -9,7 +10,7 @@ app.config(function ($routeProvider) {
 			templateUrl: 'src/pages/about.html'
 		})
 		.when('/loggedin', {
-			templateUrl: 'src/pages/user.html'
+			templateUrl: 'src/pages/user.html',
 		})
 		.when('/error', {
 			templateUrl: 'src/pages/error.html'

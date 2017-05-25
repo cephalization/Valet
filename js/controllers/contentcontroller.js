@@ -1,40 +1,24 @@
-app.controller('contentController', function ($scope, $window, $http, $sce) {
+app.controller('contentController', function ($scope, $window, $http, $sce, accountService) {
 
-	// Get user's spotify information/profile
-	console.log('location host is', location.host);
+	// Load user account from service
 	var user = {};
-	$http.get('http://' + location.host + '/spotify/isAuthenticated').then(function (response) {
-		console.log('user info response is', response);
-		if (response.data.auth) {
-			var userProps = Object.keys(response.data.userInfo);
-			for (var i = 0; i < userProps.length; i++) {
-				var property = userProps[i];
-				var val = response.data.userInfo[property];
-				Object.defineProperty(user, property, {
-					value: val,
-					enumerable: true,
-					configurable: true
-				});
-			}
+	if (accountService.loaded()) {
+		user = accountService.get();
+		if (user.auth) {
 			$scope.userInfo = user;
-			console.log('scope', $scope.userInfo);
-		} else {
-			alert('Login token has expired. Please log in again.');
-			$window.location.href = '/';
+			$scope.playlists = user.playlists;
 		}
-	});
+	} else {
+		$scope.$on('account:loaded',function() {
+			user = accountService.get();
+			if (user.auth) {
+				$scope.userInfo = user;
+				$scope.playlists = user.playlists;
+			}
+		});
+	}
 
-	//Get user's spotify playlists
-	$http.get('http://' + location.host + '/spotify/getPlaylists').then(function (response) {
-		console.log(response);
-		if (response.error) {
-			alert('Could not authorize request for user playlists. Please sign in later.');
-			$window.location.href = '/';
-		} else {
-			$scope.playlists = response.data.data.items;
-		}
-	});
-
+	// Decide which Spotify username to use
 	$scope.userName = function () {
 		if (user.display_name == null) {
 			return user.id;
@@ -113,6 +97,7 @@ app.controller('contentController', function ($scope, $window, $http, $sce) {
 			var track = tracks[i];
 			var query = track.track.artists[0].name + track.track.name;
 			searchRequest(query).then(function (response) {
+				console.log('links', response);
 				videoLinks.push(
 					{
 						link: $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + response.items[0].id.videoId)

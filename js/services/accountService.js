@@ -6,6 +6,7 @@ app.service('accountService', function($http){
 	var account = {
 		auth: false
 	};
+	var loaded = false;
 
 	/**
 	 * Get the user's account
@@ -14,6 +15,15 @@ app.service('accountService', function($http){
 	 */
 	this.get = function() {
 		return account;
+	};
+
+	/**
+	 * Check if the account has been loaded already
+	 *
+	 * @return {boolean} is the account loaded
+	 */
+	this.loaded = function() {
+		return loaded;
 	};
 
 	/**
@@ -32,6 +42,7 @@ app.service('accountService', function($http){
 	this.loadAccount = function (callback) {
 		refreshAccount(function(results) {
 			angular.copy(results, account);
+			loaded = true;
 			callback();
 		});
 	};

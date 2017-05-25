@@ -1,7 +1,22 @@
-app.controller('navController', function ($scope, $http, $window, $location) {
-	$http.get('http://' + location.host + '/spotify/isAuthenticated').then(function (response) {
-		$scope.auth = response.data.auth;
-	});
+app.controller('navController', function ($rootScope, $scope, $http, $window, $location, $compile, accountService) {
+	// $http.get('http://' + location.host + '/spotify/isAuthenticated').then(function (response) {
+	// 	$scope.auth = response.data.auth;
+	// });
+	if (accountService.loaded()) {
+		$scope.account = accountService.get();
+		$scope.auth = $scope.account.auth;
+		$rootScope.$broadcast('account:loaded');
+	} else {
+		accountService.loadAccount(function() {
+			$scope.account = accountService.get();
+			$scope.auth = $scope.account.auth;
+			$rootScope.$broadcast('account:loaded');
+			if ($location.path() === '/loggedin' && !$scope.auth) {
+				alert('Login token has expired. Please log in again.');
+				$window.location.href = '/';
+			}
+		});
+	}
 
 	console.log('ng scope', $scope);
 	$scope.whichRoot = function () {
@@ -25,5 +40,9 @@ app.controller('navController', function ($scope, $http, $window, $location) {
 		} else {
 			sidenav.classList.add('collapse');
 		}
+	};
+
+	$scope.logout = function () {
+		accountService.logout();
 	};
 });
