@@ -22,21 +22,17 @@
 					<hr class="hidden-xs"/>
 				</div>
 				<!-- Links -->
-				<ul class="col-xs-6 col-sm-12 col-md-12 col-lg-12">
+				<ul class="col-sm-12 col-md-12 col-lg-12" ng-class="{'col-xs-12':!auth, 'col-xs-6':auth}">
 					<li>
 						<a href="/#!/about" class="about">
-							<h4>
-								<i class="fa fa-info-circle"></i>
-								About
-							</h4>
+							<i class="fa fa-info-circle"></i>
+							About
 						</a>
 					</li>
 					<li ng-if="auth">
 						<a ng-href="/logout" ng-click="logout()" class="about">
-							<h4>
-								<i class="fa fa-sign-out"></i>
-								Logout
-							</h4>
+							<i class="fa fa-sign-out"></i>
+							Logout
 						</a>
 					</li>
 				</ul>

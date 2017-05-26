@@ -66,4 +66,12 @@ app.controller('navController', function ($rootScope, $scope, $http, $window, $l
 	$scope.logout = function () {
 		accountService.logout();
 	};
+
+	var sidenav = document.getElementById('sidenav');
+	sidenav.onclick = function(e) {
+		var target = e.target.localName;
+		if (!sidenav.classList.contains('collapse') && document.body.clientWidth < 768 && target === 'li' || target === 'a') {
+			sidenav.classList.add('collapse');
+		}
+	};
 });
