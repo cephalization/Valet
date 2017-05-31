@@ -3,85 +3,85 @@ Index Partial CSS
 */
 
 .title {
-  font-family: 'Oleo Script', cursive;
-  font-weight: bold;
+	font-family: 'Oleo Script', cursive;
+	font-weight: bold;
 }
 
 .username {
-  padding-top: 10%;
-  margin-left: 0;
-  padding-left: 0;
-  padding-right: 0;
-  margin-right: 0;
+	padding-top: 10%;
+	margin-left: 0;
+	padding-left: 0;
+	padding-right: 0;
+	margin-right: 0;
 }
 
 .transitional-div {
-  display: inline-block;
-  overflow: hidden;
-  width: 100%
+	display: inline-block;
+	overflow: hidden;
+	width: 100%
 }
 
 @media (max-width:768px) {
-  .content-panel {
-    max-width: 100%;
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-  }
+	.content-panel {
+		max-width: 100%;
+		width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+	}
 }
 
 .container-fill {
-  height: 50%;
+	height: 50%;
 }
 
 a.jumbo-title:link {
-  color: #3d3d3f;
+	color: #3d3d3f;
 }
 
 a:hover, a:visited, a:link, a:active a:focus {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 body {
-  font-family: 'Lato', sans-serif;
-  background-color: #ECF2F6;
-  padding: 0;
-  margin: 0;
-  max-height: 100vh;
-  overflow: hidden;
-  color: #333333;
+	font-family: 'Lato', sans-serif;
+	background-color: #ECF2F6;
+	padding: 0;
+	margin: 0;
+	max-height: 100vh;
+	overflow: hidden;
+	color: #333333;
 }
 
 
 .helper-text {
-  color: #5A5D69;
+	color: #5A5D69;
 }
 
 a.about:link {
-  color: #3d3d3f;
+	color: #3d3d3f;
 }
 
 a.about:hover {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .about {
-  font-size: 1em;
+	font-size: 1em;
 }
 
 ul {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 li {
-  padding: 0;
-  list-style-type: none;
+	padding: 0;
+	list-style-type: none;
 }
 
 .nav-padder {
-  display: inline-block;
-  padding: 5px;
+	display: inline-block;
+	padding: 5px;
 }
 
 /*
@@ -89,127 +89,127 @@ Login Partial CSS
 */
 
 .spotify {
-  margin-top: 32px;
-  align-items: center;
+	margin-top: 32px;
+	align-items: center;
 }
 
 .login {
-  text-align: center;
-  color: #3d3d3f;
+	text-align: center;
+	color: #3d3d3f;
 }
 
 a {
-  color: inherit;
+	color: inherit;
 }
 
 a:hover, a:active, a:focus {
-  text-decoration: none;
-  color: inherit;
+	text-decoration: none;
+	color: inherit;
 }
 
 a.login:link {
-  color: #7dce94;
+	color: #7dce94;
 }
 
 a.login:hover {
-  text-decoration: none;
-  color: #7dce94;
+	text-decoration: none;
+	color: #7dce94;
 }
 
 .login-panel {
-  border-color: #1ED760;
+	border-color: #1ED760;
 }
 
 .panel {
-  border: 0;
-  border-radius: 0;
+	border: 0;
+	border-radius: 0;
 }
 
 .content-anim.ng-enter {
-  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) .75s;
+	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) .75s;
 }
 
 .content-anim.ng-leave {
-  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s;
+	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s;
 }
 
 .panel-default > .custom-panel-heading {
-  background-image: none;
-  background-color: #6F7D95;
-  color: #FFFFFF;
-  border-radius: 0px;
+	background-image: none;
+	background-color: #6F7D95;
+	color: #FFFFFF;
+	border-radius: 0px;
 }
 
 .content-anim.ng-enter,
 .content-anim.ng-leave.ng-leave-active {
-  opacity:0;
+	opacity:0;
 }
 
 .content-anim.ng-leave,
 .content-anim.ng-enter.ng-enter-active {
-  opacity:1;
+	opacity:1;
 }
 
 .panel-body {
-  text-align: center;
+	text-align: center;
 }
 
 .playlist-btn {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  white-space: normal;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	white-space: normal;
 }
 
 .content-list {
-  overflow: auto;
-  height: 50em;
-  width: 100%;
-  text-overflow: ellipsis;
+	overflow: auto;
+	height: 50em;
+	width: 100%;
+	text-overflow: ellipsis;
 }
 
 .video-list {
-  overflow: auto;
-  height: 50em;
-  width: 100%;
+	overflow: auto;
+	height: 50em;
+	width: 100%;
 }
 
 .song-box {
-  text-overflow: ellipsis;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin-bottom: 10px;
-  border: medium solid #1ED760;
-  width: 100%;
+	text-overflow: ellipsis;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 10px;
+	border: medium solid #1ED760;
+	width: 100%;
 }
 
 .video-box {
-  text-overflow: ellipsis;
-  padding: 5px;
-  margin-bottom: 10px;
-  border: medium solid #1ED760;
+	text-overflow: ellipsis;
+	padding: 5px;
+	margin-bottom: 10px;
+	border: medium solid #1ED760;
 }
 
 .album-art {
-  height: 128px;
-  width: 128px;
-  border: 1px solid #1ED760;
+	height: 128px;
+	width: 128px;
+	border: 1px solid #1ED760;
 }
 
 .artist-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
 }
 
 .artist-list > li {
-  float: left;
-  display: inline;
-  padding: 5px;
-  text-align: center;
+	float: left;
+	display: inline;
+	padding: 5px;
+	text-align: center;
 }
 
 .profile-img {
-  width: 50%;
+	width: 50%;
 	height: 50%;
 	margin-left: auto;
 	margin-right: auto;
@@ -217,81 +217,81 @@ a.login:hover {
 }
 
 .information-panel {
-  background-color: #FFF;
-  padding: 25px;
-  margin: 0;
-  border-bottom: 1px solid #A0ACBF;
+	background-color: #FFF;
+	padding: 25px;
+	margin: 0;
+	border-bottom: 1px solid #A0ACBF;
 }
 
 /* Sidenav CSS*/
 .nav-width {
-  width: 16.66%;
-  float: left;
-  position: relative;
+	width: 16.66%;
+	float: left;
+	position: relative;
 }
 
 .fixed-sidenav {
-  position: fixed;
-  left: 0;
-  background-color: #EEE;
-  height: 100%;
-  z-index: 99999;
+	position: fixed;
+	left: 0;
+	background-color: #EEE;
+	height: 100%;
+	z-index: 99999;
 }
 
 .navbar {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .navbar-collapse {
-  padding: 0;
+	padding: 0;
 }
 
 .navbar-custom {
-  background-color: #FFF;
-  color: #5A5D69;
-  border-bottom: 1px solid #A0ACBF;
-  box-shadow: 10px 0 5px 3px rgba(0,0,0,.1);
+	background-color: #FFF;
+	color: #5A5D69;
+	border-bottom: 1px solid #A0ACBF;
+	box-shadow: 10px 0 5px 3px rgba(0,0,0,.1);
 }
 
 .navbar-custom .icon-bar {
-  background-color: #A0ACBF;
+	background-color: #A0ACBF;
 }
 
 .sidenav {
-  background-color: #354052;
+	background-color: #354052;
 }
 
 .sidenav * {
-  color: #A0ACBF;
+	color: #A0ACBF;
 }
 
 .sidenav ul .fa {
-  padding-right: 5px;
+	padding-right: 5px;
 }
 
 .sidenav li {
-  width: 100%;
-  padding-top: 5px;
-  padding-left: 15px;
-  padding-bottom: 5px;
+	width: 100%;
+	padding-top: 5px;
+	padding-left: 15px;
+	padding-bottom: 5px;
 }
 
 
 .active-link {
-  background-color: #2F3949;
-  border-left: 5px solid #1ED760;
-  padding-left:10px!important;
+	background-color: #2F3949;
+	border-left: 5px solid #1ED760;
+	padding-left:10px!important;
 }
 
 .sidenav li a {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .sidenav li:hover {
-  background-color: #2F3949;
-  border-left: 5px solid #1ED760;
-  padding-left:10px;
+	background-color: #2F3949;
+	border-left: 5px solid #1ED760;
+	padding-left:10px;
 }
 
 .playlists {
@@ -305,32 +305,52 @@ a.login:hover {
 }
 
 .sidenav hr {
-  height: 1px;
-  margin: 0;
-  border: 1px dotted #293241;
-  border-left: 0;
-  border-right: 0;
-  background-color: #354052;
+	height: 1px;
+	margin: 0;
+	border: 1px dotted #293241;
+	border-left: 0;
+	border-right: 0;
+	background-color: #354052;
 }
 
 .full-height {
-  height: 100vh;
+	height: 100vh;
 }
 
 .full-width {
-  padding-left: 0;
-  padding-right: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/* Flexbox Grid System*/
+.flex-container {
+	display: flex;
+	/*justify-content: space-between;
+	align-items: flex-start;
+	align-content: space-around;*/
+	margin: auto;
+	flex-wrap: wrap;
+	/*flex-grow: 1;*/
+}
+
+.flex-col {
+	flex-basis: auto;
+	flex-grow: 1;
+	flex-shrink: 0;
+	width: 50%;
+	min-height: 12.5em;
+	max-height: 50em;
 }
 
 /* Make sidebar nav vertical */
 /* From codepen https://codepen.io/mikeair/pen/Kfyin */
 @media (max-width:767px) {
-  .fixed-sidenav {
-    width: 100%;
-    /*box-shadow: 5px 10px 15px 5px rgba(0,0,0,.1);*/
-  }
+	.fixed-sidenav {
+		width: 100%;
+		/*box-shadow: 5px 10px 15px 5px rgba(0,0,0,.1);*/
+	}
 	.profile-img {
-	  width: 25%;
+		width: 25%;
 		height: 25%;
 		margin-left: auto;
 		margin-right: auto;
@@ -338,16 +358,16 @@ a.login:hover {
 	}
 
 	.content-list {
-	  overflow: auto;
-	  height: 28em;
-	  width: 100%;
-	  text-overflow: ellipsis;
+		overflow: auto;
+		height: 28em;
+		width: 100%;
+		text-overflow: ellipsis;
 	}
 
 	.video-list {
-	  overflow: auto;
-	  height: 28em;
-	  width: 100%;
+		overflow: auto;
+		height: 28em;
+		width: 100%;
 	}
 
 	.sidenav li {
@@ -362,60 +382,67 @@ a.login:hover {
 		border: 2px dotted #293241;
 	}
 
-    .visible-xs {
-        display: inline-block!important;
-    }
+	.visible-xs {
+		display: inline-block!important;
+	}
+
+	.flex-container {
+		display: block;
+	}
+
+	.flex-col {
+		width: 100%;
+	}
 }
 
 @media (min-width: 768px) {
 
+	.navbar-collapse.collapse {
+		height: 100vh !important;
+	}
 
-  .navbar-collapse.collapse {
-    height: 100vh !important;
-  }
+	.sidenav {
+		height: 100%;
+		min-width: 145px;
+	}
 
-  .sidenav {
-    height: 100%;
-    min-width: 145px;
-  }
+	.fill-width {
+		width: 100%;
+	}
 
-  .fill-width {
-    width: 100%;
-  }
-
-  .sidebar-nav .navbar .navbar-collapse {
-    padding: 0;
-    max-height: none;
-  }
-  .sidebar-nav .navbar ul {
-    float: none;
-    display: block;
-  }
-  .sidebar-nav .navbar li {
-    float: none;
-    display: block;
-  }
-  .sidebar-nav .navbar li a {
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
+	.sidebar-nav .navbar .navbar-collapse {
+		padding: 0;
+		max-height: none;
+	}
+	.sidebar-nav .navbar ul {
+		float: none;
+		display: block;
+	}
+	.sidebar-nav .navbar li {
+		float: none;
+		display: block;
+	}
+	.sidebar-nav .navbar li a {
+		padding-top: 12px;
+		padding-bottom: 12px;
+	}
 }
 
 
 /* Customize Scrollbar */
 ::-webkit-scrollbar {
-width: 8px;
+	width: 8px;
 }
 
 ::-webkit-scrollbar-track {
--webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
--webkit-border-radius: 2px;
-border-radius: 2px;
+	-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  background: #293241;
-  -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	background: #293241;
+	-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
 }

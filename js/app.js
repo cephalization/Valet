@@ -10,7 +10,7 @@ app.config(function ($routeProvider, $controllerProvider) {
 			templateUrl: 'src/pages/about.html'
 		})
 		.when('/loggedin', {
-			templateUrl: 'src/pages/user.html',
+			templateUrl: 'src/pages/content.html',
 		})
 		.when('/error', {
 			templateUrl: 'src/pages/error.html'

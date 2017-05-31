@@ -42,6 +42,7 @@ app.controller('contentController', function ($rootScope, $scope, $window, $http
 	*/
 	// Handle state changes within the application
 	function playlistSelected() {
+		$scope.youtubeSearched = false;
 		$scope.playlistSelected = true;
 	}
 	function playlistDeselected() {
@@ -50,8 +51,9 @@ app.controller('contentController', function ($rootScope, $scope, $window, $http
 		accountService.removePlaylist();
 		$rootScope.$broadcast('playlist:removed');
 	}
-	function youtubeQueried() {
+	function youtubeQueried(videos) {
 		$scope.youtubeSearched = true;
+		$scope.links = videos;
 	}
 	$scope.playlistSelected = false;
 	$scope.selectPlaylist = playlistSelected;
@@ -94,29 +96,38 @@ app.controller('contentController', function ($rootScope, $scope, $window, $http
 	}
 
 	function findVideos(tracks) {
-		var videoLinks = [];
+		var promises = [];
+
+		// Build a collection of promises for every youtube query
 		for (var i = 0; i < tracks.length; i++) {
 			var track = tracks[i];
 			var query = track.track.artists[0].name + track.track.name;
-			searchRequest(query).then(function (response) {
-				console.log('links', response);
-				for(var j = 0, len = 10; j < len; j++) {
-					if (response.items[j] != null) {
+			promises.push(searchRequest(query));
+		}
+
+		// Evaluate the results all of the promises in order
+		Promise.all(promises).then(function(results) {
+			var videoLinks = [];
+			for (var i = 0; i < results.length; i++) {
+				query = results[i].items;
+				for (var j = 0; j < query.length; j++) {
+					var songLink = query[j];
+					if (songLink != null) {
 						videoLinks.push(
 							{
-								link: $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + response.items[0].id.videoId)
+								link: $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + songLink.id.videoId)
 							});
+						break;
 					}
-					j = 11;
 				}
-			}, function (error) {
-				console.log(error);
-			});
-		}
-		$scope.links = videoLinks;
-		if ($scope.links) {
-			$scope.youtubeSearched = true;
-		}
+			}
+
+			// All songs have been resolved
+			youtubeQueried(videoLinks);
+
+		}, function(error) {
+			console.log(error);
+		});
 	}
 	$scope.findVideos = findVideos;
 });

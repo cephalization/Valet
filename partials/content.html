@@ -48,11 +48,11 @@
 					<span ng-click="deselectPlaylist()" class="glyphicon glyphicon-backward btn btn-default btn-sm"></span>
 					Music Videos
 				</div>
-				<div class="panel-body video-list">
-					<div ng-repeat="link in links">
-						<div class="video-box">
+				<div class="panel-body full-width">
+					<div class="flex-container content-list">
+						<div ng-repeat="link in links" class="flex-col">
 							<div class="embed-responsive embed-responsive-16by9">
-								<iframe class="embed-responsive-item" src="{{::link.link}}"></iframe>
+								<iframe src="{{::link.link}}" class="embed-responsive-item"></iframe>
 							</div>
 						</div>
 					</div>
