@@ -1,0 +1,61 @@
+<div ng-controller="navController">
+  <div  class="navbar navbar-static-top navbar-custom">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" ng-click="toggleSidenav()">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="{{whichRoot()}}" class="navbar-brand title"><b>Valet</b></a>
+      </div>
+    </div>
+  </div>
+  <div class="sidenav nav-width full-height fixed-sidenav collapse navbar-collapse" id="sidenav">
+    <div style="position:relative; min-height: 100%;">
+			<div class="row">
+				<!-- Avatar -->
+				<div ng-if="auth" class="col-xs-6 col-sm-12 col-md-12 col-lg-12">
+					<img src="{{::account.images[0].url}}" alt="Profile" class="img-circle img-responsive profile-img">
+					<h3 class="text-center">Welcome, {{::userName()}}</h3>
+					<hr class="hidden-xs"/>
+				</div>
+				<!-- Links -->
+				<ul class="col-sm-12 col-md-12 col-lg-12" ng-class="{'col-xs-12':!auth, 'col-xs-6':auth}">
+					<li>
+						<a href="/#!/about" class="about">
+							<i class="fa fa-info-circle"></i>
+							About
+						</a>
+					</li>
+					<li ng-if="auth">
+						<a ng-href="/logout" ng-click="logout()" class="about">
+							<i class="fa fa-sign-out"></i>
+							Logout
+						</a>
+					</li>
+				</ul>
+			</div>
+			<hr/>
+      <!-- User Playlists -->
+      <ul ng-if="auth" class="playlists">
+        <li ng-repeat="playlist in account.playlists" class="playlist" ng-click="setPlaylist(playlist)" ng-class="{'active-link':playlist == selectedPlaylist}">
+					{{::playlist.name}}
+				</li>
+      </ul>
+			<hr/>
+      <!-- Credits, Woo -->
+      <div style="position:fixed; bottom: 15px; left: 15px">
+        <h6>
+          Made with <i class="fa fa-code fa-2x" aria-hidden="true"></i>,
+          <a href="https://www.github.com/cephalization/valet"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>.
+        </h6>
+        <h6>
+          Contact me on
+          <a href="https://www.twitter.com/cephalization"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>.
+        </h6>
+      </span>
+    </div>
+  </div>
+</div>

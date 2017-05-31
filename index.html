@@ -9,46 +9,31 @@
   <base href="/">
 	<title>Valet</title>
 
-	<link type="text/css" rel="stylesheet" href="src/css/bootstrap.min.css">
-	<link type="text/css" rel="stylesheet" href="src/css/master.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Oleo+Script:400,700" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="src/libraries/bootstrap.min.css">
+	<link rel="stylesheet" href="src/styles/font-awesome.min.css">
+	<link type="text/css" rel="stylesheet" href="src/styles/master.css">
 	<!-- Scripts -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-	<script type="text/javascript" src="src/scripts/bootstrap.min.js"></script>
+	<script type="text/javascript" src="src/libraries/bootstrap.min.js"></script>
 	<!-- Angular Links -->
-	<script type="text/javascript" src="src/scripts/angular.min.js"></script>
-	<script type="text/javascript" src="src/scripts/angular-route.min.js"></script>
-	<script type="text/javascript" src="src/scripts/angular-resource.min.js"></script>
-	<script type="text/javascript" src="src/scripts/angular-animate.min.js"></script>
-	<script type="text/javascript" src="src/scripts/app.module.js"></script>
-
-
-
-
+	<script type="text/javascript" src="src/libraries/angular.min.js"></script>
+	<script type="text/javascript" src="src/libraries/angular-route.min.js"></script>
+	<script type="text/javascript" src="src/libraries/angular-resource.min.js"></script>
+	<script type="text/javascript" src="src/libraries/angular-animate.min.js"></script>
+	<script type="text/javascript" src="src/modules/app.js"></script>
+	<script type="text/javascript" src="src/modules/accountService.js"></script>
+	<script type="text/javascript" src="src/modules/contentcontroller.js"></script>
+	<script type="text/javascript" src="src/modules/navcontroller.js"></script>
 </head>
 
 <body ng-app="valetState">
-	<div ng-controller="titleCtrl" class="container">
-		<div class="title text-center jumbotron well-sm">
-			<a href="{{whichRoot()}}" class="jumbo-title"><h1>Valet</h1></a>
-			<h3>Let us do the work while you watch your music</h3>
-			<ul>
-				<li ng-class="{'nav-padder' : auth}"><a href="/#!/about" class="about"><h4>About</h4></a></li>
-				<li ng-class="{'nav-padder' : auth}"><a href="/logout" class="about" ng-if="auth"><h4>Logout</h4></a></li>
-			</ul>
-		</div>
-	</div>
-	<!-- Angular App Injection -->
+	<div ng-include="'src/pages/sidenav.html'"></div>
 	<div class="container-fluid">
-		<div ng-view></div>
-	</div>
-	<!-- Credits -->
-	<div class="container-fluid row">
-		<a href="https://www.twitter.com/cephalization/" style="color:slategray">
-			<div class="well well-sm col-md-2 col-md-offset-5 text-center">
-				<span class="glyphicon glyphicon-bullhorn"></span>
-				<p>Contact</p>
-			</div>
-		</a>
+		<div class="row">
+			<!-- Angular App Injection -->
+			<div class="col-xs-12 col-sm-offset-2 col-sm-10 col-md-offset-2 col-md-10 full-width" ng-view></div>
+		</div>
 	</div>
 </body>
 
