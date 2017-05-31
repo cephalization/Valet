@@ -54,6 +54,7 @@ app.controller('contentController', function ($rootScope, $scope, $window, $http
 	function youtubeQueried(videos) {
 		$scope.youtubeSearched = true;
 		$scope.links = videos;
+		$scope.$apply();
 	}
 	$scope.playlistSelected = false;
 	$scope.selectPlaylist = playlistSelected;
