@@ -1,6 +1,6 @@
 {
-    "spotify_client_id" : "",
-    "spotify_client_secret" : "",
-    "spotify_redirect_uri" : "",
-    "youtube_yt_api_key": ""
+    "spotify_client_id" : "22816d41c88a489594cd59e8186658cf",
+    "spotify_client_secret" : "80e3ad9e6a3748b2bd8acf5d8d534df6",
+    "spotify_redirect_uri" : "http://anthonypowell.me/valet/api/callback/",
+    "youtube_yt_api_key": "AIzaSyB1cUcOVByxs8z7N8AAlpMqk-UnQBJNP2M"
 }
