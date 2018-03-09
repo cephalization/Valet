@@ -13,7 +13,7 @@ app.controller('navController', function ($rootScope, $scope, $http, $window, $l
 			$rootScope.$broadcast('account:loaded');
 			if ($location.path() === '/loggedin' && !$scope.auth) {
 				alert('Login token has expired. Please log in again.');
-				$window.location.href = '/';
+				$window.location.href = '/valet/';
 			}
 		});
 	}

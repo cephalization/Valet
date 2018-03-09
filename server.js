@@ -43,23 +43,23 @@ var nodeIncludes = [
 	express.static(__dirname + '/node_modules/angular-resource'),
 	express.static(__dirname + '/node_modules/angular-animate')
 ];
-server.use('/src/libraries', nodeIncludes);
+server.use('/valet/src/libraries', nodeIncludes);
 var scriptIncludes = [
 	express.static(__dirname + '/js'),
 	express.static(__dirname + '/js/controllers'),
 	express.static(__dirname + '/js/services')
 ];
-server.use('/src/modules', scriptIncludes);
+server.use('/valet/src/modules', scriptIncludes);
 var styleIncludes = [
 	express.static(__dirname + '/css'),
 	express.static(__dirname + '/img')
 ];
-server.use('/src/styles', styleIncludes);
+server.use('/valet/src/styles', styleIncludes);
 var contentIncludes = [
 	express.static(__dirname + '/partials')
 ];
-server.use('/src/pages', contentIncludes);
-server.use('/src/fonts', express.static(__dirname + '/fonts'));
+server.use('/valet/src/pages', contentIncludes);
+server.use('/valet/src/fonts', express.static(__dirname + '/fonts'));
 server.use(express.static(__dirname + '/')).use(cookieParser());
 
 
@@ -87,7 +87,7 @@ if (!client_id || !client_secret || !redirect_uri || !yt_api_key) {
 } else {
 
 	// Setup request functions
-	server.listen(8080, function () {
+	server.listen(8081, function () {
 		console.log('Connection Successful!');
 	});
 
@@ -97,7 +97,7 @@ if (!client_id || !client_secret || !redirect_uri || !yt_api_key) {
 
 
 	// Spotify Authorization code. Still needs some tuning.
-	server.get('/login', function (req, res) {
+	server.get('/valet/api/login', function (req, res) {
 		var state = generateRandomString(16);
 
 		res.cookie(stateKey, state);
@@ -113,7 +113,7 @@ if (!client_id || !client_secret || !redirect_uri || !yt_api_key) {
 			}));
 	});
 
-	server.get('/callback', function (req, res) {
+	server.get('/valet/api/callback', function (req, res) {
 
 		// your application requests refresh and access tokens
 		// after checking the state parameter
@@ -183,7 +183,7 @@ if (!client_id || !client_secret || !redirect_uri || !yt_api_key) {
 		}
 	});
 
-	server.get('/refresh_token', function (req, res) {
+	server.get('/valet/api/refresh_token', function (req, res) {
 
 		// requesting access token from refresh token
 		var refresh_token = req.query.refresh_token;
@@ -207,7 +207,7 @@ if (!client_id || !client_secret || !redirect_uri || !yt_api_key) {
 			}
 		});
 	});
-	server.get('/logout', function (req, res) {
+	server.get('/valet/api/logout', function (req, res) {
 		res.clearCookie('accessToken');
 		res.clearCookie('refreshToken');
 		res.redirect('/');
@@ -218,7 +218,7 @@ if (!client_id || !client_secret || !redirect_uri || !yt_api_key) {
 	 */
 
 	// ***** retrieve user information ******
-	server.get('/spotify/isAuthenticated', function (req, res) {
+	server.get('/valet/api/spotify/isAuthenticated', function (req, res) {
 		var spotifyAccessToken = req.cookies['accessToken'];
 		var spotifyRefreshToken = req.cookies['refreshToken'];
 		if (spotifyAccessToken !== null && spotifyRefreshToken !== null) {
@@ -247,7 +247,7 @@ if (!client_id || !client_secret || !redirect_uri || !yt_api_key) {
 	});
 
 	// ****** retrieve user playlists *****
-	server.get('/spotify/getPlaylists', function (req, res) {
+	server.get('/valet/api/spotify/getPlaylists', function (req, res) {
 		var spotifyAccessToken = req.cookies['accessToken'];
 		var spotifyRefreshToken = req.cookies['refreshToken'];
 		if (spotifyAccessToken !== null && spotifyRefreshToken !== null) {
@@ -279,7 +279,7 @@ if (!client_id || !client_secret || !redirect_uri || !yt_api_key) {
 	});
 
 	// ***** retrieve playlist's songs ******
-	server.get('/spotify/getSongs', function (req, res) {
+	server.get('/valet/api/spotify/getSongs', function (req, res) {
 		var spotifyAccessToken = req.cookies['accessToken'];
 		var spotifyRefreshToken = req.cookies['refreshToken'];
 		var userID = req.query.userID;
@@ -318,7 +318,7 @@ if (!client_id || !client_secret || !redirect_uri || !yt_api_key) {
 	 */
 
 	// ****** Perform search query for a song ******
-	server.get('/youtube/search', function (req, res) {
+	server.get('/valet/api/youtube/search', function (req, res) {
 		var searchQuery = req.query.searchQuery;
 		var options = {
 			url: 'https://www.googleapis.com/youtube/v3/search',
