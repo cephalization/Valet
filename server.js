@@ -172,7 +172,7 @@ if (!client_id || !client_secret || !redirect_uri || !yt_api_key) {
 						maxAge: (60000 * 60 * 24)
 					});
 
-					res.redirect('/#!/loggedin');
+                    res.redirect('/valet/#!/loggedin');
 				} else {
 					res.redirect('/#' +
 						querystring.stringify({
@@ -210,7 +210,7 @@ if (!client_id || !client_secret || !redirect_uri || !yt_api_key) {
 	server.get('/valet/api/logout', function (req, res) {
 		res.clearCookie('accessToken');
 		res.clearCookie('refreshToken');
-		res.redirect('/');
+		res.redirect('/valet');
 	});
 
 	/*
