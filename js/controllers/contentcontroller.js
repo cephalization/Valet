@@ -20,7 +20,7 @@ app.controller('contentController', function ($rootScope, $scope, $window, $http
 
 	//Get songs for a playlist
 	$scope.getSongs = function (plistID, owner) {
-		$http.get('http://' + location.host + '/api/spotify/getSongs', {
+		$http.get('http://' + location.host + '/valet/api/spotify/getSongs', {
 			params: {
 				userID: owner,
 				playlistID: plistID
@@ -80,7 +80,7 @@ app.controller('contentController', function ($rootScope, $scope, $window, $http
 		return new Promise(function (resolve, reject) {
 
 			// Return an embed link of a youtube video
-			$http.get('http://' + location.host + '/api/youtube/search', {
+			$http.get('http://' + location.host + '/valet/api/youtube/search', {
 				params: {
 					searchQuery: query
 				}

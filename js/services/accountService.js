@@ -67,13 +67,13 @@ app.service('accountService', function($http){
 		};
 
 		// Load general account information
-		$http.get('/api/spotify/isAuthenticated').then(function(aResponse) {
+		$http.get('/valet/api/spotify/isAuthenticated').then(function(aResponse) {
 			if (aResponse.data.auth) {
 				a.auth = true;
 				Object.assign(a, aResponse.data.userInfo);
 
 				// Load playlists
-				$http.get('/api/spotify/getPlaylists').then(function(pResponse) {
+				$http.get('/valet/api/spotify/getPlaylists').then(function(pResponse) {
 					if (!pResponse.error) {
 						a.playlists = pResponse.data.data.items;
 					} else {

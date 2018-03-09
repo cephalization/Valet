@@ -60,7 +60,7 @@ var contentIncludes = [
 ];
 server.use('/valet/src/pages', contentIncludes);
 server.use('/valet/src/fonts', express.static(__dirname + '/fonts'));
-server.use(express.static(__dirname + '/')).use(cookieParser());
+server.use('/valet', express.static(__dirname + '/')).use(cookieParser());
 
 
 // Setup Micellaneous Server functions
